@@ -1,0 +1,62 @@
+/*import Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+P+One&family=Red+Hat+Mono:wght@300&display=swap');
+
+/*All elements, before each and after each, will have these property values*/
+*, *::before, ::after{
+    box-sizing: border-box; /*padding and border are factored into sizing of elements*/
+    font-family: 'Dongle', sans-serif;
+    font-weight: normal;
+}
+
+body{
+    padding:0;
+    margin:0;
+    background:linear-gradient(to right, #151616, rgb(156, 206, 240)); 
+}
+
+.calculator_grid{
+    display: grid;
+    justify-content: center; /*main axis*/
+    align-content: center; /*cross axis; flex-lines alignment*/
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5,100px);
+}
+
+.calculator_grid > button{
+    cursor:pointer;
+    font-size:2rem; /*rem = Root element font size; default is 16px*/
+    border:1px solid white;
+    outline: none;
+    background-color:rgba(255,255,255, .75);
+}
+
+.calculator_grid > button:hover{
+    background-color:rgba(255,255,255, .98);
+}
+
+.span-two {
+    grid-column-start: span 2;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background-color: rgba(0,0,0, .95);
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content: space-around;
+    padding:1vmin;
+    overflow-wrap:break-word; /*breaks a word once it is too long to fit in a box; it tries to identify and respect whole-words and spaces*/
+    word-break:break-all;/*breaks text at the point of overflow; even if placing the word on a new line would help display*/
+}
+
+.output .previous_operand {
+    color:rgba(255,255,255, .75);
+    font-size:1.5rem;
+}
+
+.output .current_operand{
+    color:white;
+    font-size:2.5rem;
+}
