@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+P+One&family=Red+Hat+Mono:wght@300&display=swap');
 
 /*All elements, before each and after each, will have these property values*/
-*, *::before, ::after{
+*{
     box-sizing: border-box; /*padding and border are factored into sizing of elements*/
     font-family: 'Dongle', sans-serif;
     font-weight: normal;
