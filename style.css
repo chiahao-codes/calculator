@@ -47,8 +47,7 @@ body{
     align-items:flex-end;
     justify-content: space-around;
     padding:1vmin;
-    overflow-wrap:break-word; /*breaks a word once it is too long to fit in a box; it tries to identify and respect whole-words and spaces*/
-    word-break:break-all;/*breaks text at the point of overflow; even if placing the word on a new line would help display*/
+    word-break:break-all;/*breaks text at the point of overflow*/
 }
 
 .output .previous_operand {
