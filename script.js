@@ -116,12 +116,13 @@ class Calculator {
     } else {
         this.previousOperandTextElement.innerText = "";
     }
-    
+
     let currentOpText = this.currentOperandTextElement.innerText;
     let previousOpText = this.previousOperandTextElement.innerText;
 
     localStorage.setItem("current", currentOpText);
     localStorage.setItem("previous", previousOpText);
+
   }
  
 }
