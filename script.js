@@ -122,7 +122,6 @@ class Calculator {
 
     localStorage.setItem("current", currentOpText);
     localStorage.setItem("previous", previousOpText);
-
   }
  
 }
