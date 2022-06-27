@@ -109,17 +109,19 @@ class Calculator {
     this.currentOperandTextElement.innerText = this.getDisplay(
       this.currentOperand
     );
-    let currentOpText = this.currentOperand;
-    localStorage.setItem("currentOpText", currentOpText);
     if (this.operation) {
         this.previousOperandTextElement.innerText =
         `${this.getDisplay(this.previousOperand)} ${this.operation}`;
-      let previousOpText = this.previousOperand, operationStorage = this.operation;
-      localStorage.setItem("previousOpText", previousOpText);
-      localStorage.setItem("operation", operationStorage);
+      
     } else {
         this.previousOperandTextElement.innerText = "";
     }
+    
+    let currentOpText = this.currentOperandTextElement.innerText;
+    let previousOpText = this.previousOperandTextElement.innerText;
+
+    localStorage.setItem("current", currentOpText);
+    localStorage.setItem("previous", previousOpText);
   }
  
 }
