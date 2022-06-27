@@ -48,7 +48,6 @@ class Calculator {
     let computation;
     //convert strings to numbers;
     const prev = parseFloat(this.previousOperand);
-    console.log(prev);
     const current = parseFloat(this.currentOperand);
 
     //checks if there is a number to compute inside previous or current operand;
@@ -85,13 +84,13 @@ class Calculator {
 
     const integerDigits = parseFloat(stringNumber.split(".")[0]); //get the integer, before the decimal;
     console.log(integerDigits, typeof integerDigits);
-
+    
     const decimalDigits = stringNumber.split(".")[1]; //get the numbers...aka substring, after the decimal;
       console.log(decimalDigits, typeof decimalDigits);
       
       let integerDisplay;
     if (isNaN(integerDigits)) {
-      //if user only inputs a decimal point, or no input at all...
+      //if user only inputs a decimal point;
       integerDisplay = "";
     } else {
       integerDisplay = integerDigits.toLocaleString("en", {
@@ -99,6 +98,7 @@ class Calculator {
       });
     }
     if (decimalDigits!=null) {
+      console.log(decimalDigits);
       return `${integerDisplay}.${decimalDigits}`;
     } else {
       return integerDisplay;
@@ -111,17 +111,25 @@ class Calculator {
     );
     if (this.operation) {
         this.previousOperandTextElement.innerText =
-            `${this.getDisplay(this.previousOperand)} ${this.operation}`;
+        `${this.getDisplay(this.previousOperand)} ${this.operation}`;
+      
     } else {
         this.previousOperandTextElement.innerText = "";
     }
+
+    let currentOpText = this.currentOperandTextElement.innerText;
+    let previousOpText = this.previousOperandTextElement.innerText;
+
+    localStorage.setItem("current", currentOpText);
+    localStorage.setItem("previous", previousOpText);
   }
+ 
 }
 
 const numberButtons = document.querySelectorAll("[data-number]");
 console.log(numberButtons);
 const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
-const equalsButton = document.querySelector("[data-equals");
+const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
 const allClearButton = document.querySelector("[data-all-clear]");
 const previousOperandTextElement = document.querySelector(
@@ -162,6 +170,9 @@ allClearButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-    calculator.delete();
-    calculator.updateDisplay();
-})
+  calculator.delete();
+  calculator.updateDisplay();
+});
+
+//testing github;
+//test commit2 to github;
