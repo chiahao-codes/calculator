@@ -118,6 +118,8 @@ class Calculator {
     }
     
   }
+
+  
  
 }
 
@@ -127,10 +129,10 @@ const operationButtons = document.querySelectorAll("[data-operation]"); //NodeLi
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
 const allClearButton = document.querySelector("[data-all-clear]");
-const previousOperandTextElement = document.querySelector(
+let previousOperandTextElement = document.querySelector(
   "[data-previous-operand]"
 );
-const currentOperandTextElement = document.querySelector(
+let currentOperandTextElement = document.querySelector(
   "[data-current-operand]"
 );
 
@@ -169,15 +171,16 @@ deleteButton.addEventListener("click", () => {
   calculator.updateDisplay();
 });
 
+window.addEventListener("load", (e) => {
+  let currentStorage = localStorage.getItem("current");
+  let previousStorage = localStorage.getItem("previous");
 
- window.addEventListener("load", (e) => {
-   let currentStorage = localStorage.getItem("current");
-   let previousStorage = localStorage.getItem("previous");
+  if (currentStorage) {
+    this.currentOperandTextElement.innerText = currentStorage;
+  }
+  if (previousStorage) {
+    this.previousOperandTextElement.innerText = previousStorage;
+  }
+});
 
-   if (currentStorage) {
-     this.currentOperandTextElement.innerText = currentStorage;
-   }
-   if (previousStorage) {
-     this.previousOperandTextElement.innerText = previousStorage;
-   }
- });
+ 
