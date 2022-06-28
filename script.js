@@ -24,7 +24,6 @@ class Calculator {
       return;
     }
       this.currentOperand = this.currentOperand.toString() + number.toString();
-      console.log(this.currentOperand);
       return this.currentOperand;
   }
 
@@ -80,54 +79,60 @@ class Calculator {
   //converts number to string with commas in display;
   getDisplay(number) {
     const stringNumber = number.toString(); //convert number into string, so we can split it up by where the decimal is;
-    console.log(stringNumber, typeof stringNumber);
 
     const integerDigits = parseFloat(stringNumber.split(".")[0]); //get the integer, before the decimal;
-    console.log(integerDigits, typeof integerDigits);
     
     const decimalDigits = stringNumber.split(".")[1]; //get the numbers...aka substring, after the decimal;
-      console.log(decimalDigits, typeof decimalDigits);
       
       let integerDisplay;
-    if (isNaN(integerDigits)) {
-      //if user only inputs a decimal point;
-      integerDisplay = "";
-    } else {
-      integerDisplay = integerDigits.toLocaleString("en", {
+      if (isNaN(integerDigits)) {
+        //if user only inputs a decimal point;
+        integerDisplay = "";
+      } else {
+        integerDisplay = integerDigits.toLocaleString("en", {
           maximumFractionDigits: 0,
-      });
-    }
-    if (decimalDigits!=null) {
-      console.log(decimalDigits);
-      return `${integerDisplay}.${decimalDigits}`;
-    } else {
-      return integerDisplay;
-    }
+        });
+      }
+      if (decimalDigits != null) {
+        return `${integerDisplay}.${decimalDigits}`;
+      } else {
+        return integerDisplay;
+      }
   }
   //updates the display screen after other methods are ran;
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.getDisplay(
       this.currentOperand
     );
+    localStorage.setItem("current", this.currentOperandTextElement.innerText);
     if (this.operation) {
         this.previousOperandTextElement.innerText =
         `${this.getDisplay(this.previousOperand)} ${this.operation}`;
+      localStorage.setItem(
+        "previous",
+        this.previousOperandTextElement.innerText
+      );
       
     } else {
         this.previousOperandTextElement.innerText = "";
     }
-
-    let currentOpText = this.currentOperandTextElement.innerText;
-    let previousOpText = this.previousOperandTextElement.innerText;
-
-    localStorage.setItem("current", currentOpText);
-    localStorage.setItem("previous", previousOpText);
+    
+    if (document.readyState === "complete" && localStorage.getItem("current")) {
+     this.currentOperandTextElement.innerText = localStorage.getItem("current");
+    }
+    
+     if (document.readyState === "complete" && localStorage.getItem("previous")) {
+       this.previousOperandTextElement.innerText =
+         localStorage.getItem("previous");
+     }
+    
   }
+
  
 }
 
+
 const numberButtons = document.querySelectorAll("[data-number]");
-console.log(numberButtons);
 const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
