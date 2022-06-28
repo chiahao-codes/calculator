@@ -116,21 +116,8 @@ class Calculator {
     } else {
         this.previousOperandTextElement.innerText = "";
     }
-
-    window.addEventListener("load", (e) => {
-      let currentStorage = localStorage.getItem("current");
-      let previousStorage = localStorage.getItem("previous");
-
-      if (currentStorage) {
-        this.currentOperandTextElement.innerText = currentStorage;
-      }
-      if (previousStorage) {
-        this.previousOperandTextElement.innerText = previousStorage;
-      }
-    });
     
   }
-
  
 }
 
@@ -182,5 +169,15 @@ deleteButton.addEventListener("click", () => {
   calculator.updateDisplay();
 });
 
-//testing github;
-//test commit2 to github;
+
+ window.addEventListener("load", (e) => {
+   let currentStorage = localStorage.getItem("current");
+   let previousStorage = localStorage.getItem("previous");
+
+   if (currentStorage) {
+     this.currentOperandTextElement.innerText = currentStorage;
+   }
+   if (previousStorage) {
+     this.previousOperandTextElement.innerText = previousStorage;
+   }
+ });
