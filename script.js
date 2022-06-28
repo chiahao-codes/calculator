@@ -118,8 +118,6 @@ class Calculator {
     }
     
   }
-
-  
  
 }
 
@@ -169,18 +167,6 @@ allClearButton.addEventListener("click", () => {
 deleteButton.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
-});
-
-window.addEventListener("load", (e) => {
-  let currentStorage = localStorage.getItem("current");
-  let previousStorage = localStorage.getItem("previous");
-
-  if (currentStorage) {
-    this.currentOperandTextElement.innerText = currentStorage;
-  }
-  if (previousStorage) {
-    this.previousOperandTextElement.innerText = previousStorage;
-  }
 });
 
  
