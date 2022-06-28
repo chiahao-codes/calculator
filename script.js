@@ -116,15 +116,18 @@ class Calculator {
     } else {
         this.previousOperandTextElement.innerText = "";
     }
-    
-    if (document.readyState === "complete" && localStorage.getItem("current")) {
-     this.currentOperandTextElement.innerText = localStorage.getItem("current");
-    }
-    
-     if (document.readyState === "complete" && localStorage.getItem("previous")) {
-       this.previousOperandTextElement.innerText =
-         localStorage.getItem("previous");
-     }
+
+    window.addEventListener("load", (e) => {
+      let currentStorage = localStorage.getItem("current");
+      let previousStorage = localStorage.getItem("previous");
+
+      if (currentStorage) {
+        this.currentOperandTextElement.innerText = currentStorage;
+      }
+      if (previousStorage) {
+        this.previousOperandTextElement.innerText = previousStorage;
+      }
+    });
     
   }
 
