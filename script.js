@@ -116,9 +116,7 @@ class Calculator {
     } else {
         this.previousOperandTextElement.innerText = "";
     }
-    
   }
- 
 }
 
 
@@ -138,6 +136,10 @@ const calculator = new Calculator(
   previousOperandTextElement,
   currentOperandTextElement
 );
+
+window.addEventListener("load", (e) => {
+  console.log("Loaded...");
+})
 
 //each time a user clicks a number-button, update the screen;
 numberButtons.forEach((button) => {
