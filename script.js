@@ -137,8 +137,20 @@ const calculator = new Calculator(
   currentOperandTextElement
 );
 
-window.addEventListener("load", (e) => {
+window.addEventListener("load", (e, previousOperandTextElement, currentOperandTextElement) => {
   console.log("Loaded...");
+
+  let currently = localStorage.getItem("current");
+  let previously = localStorage.getItem("previous");
+
+  if (currently) {
+    currentOperandTextElement.innerText = currently;
+  }
+
+  if (previously) {
+    previousOperandTextElement.innerText = previously;
+  }
+
 })
 
 //each time a user clicks a number-button, update the screen;
