@@ -144,11 +144,11 @@ window.addEventListener("load", (e, previousOperandTextElement, currentOperandTe
   let previously = localStorage.getItem("previous");
 
   if (currently) {
-    currentOperandTextElement.innerText = currently;
+    console.log(currentOperandTextElement.innerText);
   }
 
   if (previously) {
-    previousOperandTextElement.innerText = previously;
+   console.log(previousOperandTextElement.innerText);
   }
 
 })
