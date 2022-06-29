@@ -62,7 +62,6 @@ class Calculator {
       return;
     }
     //perform math computation based on the operation button selected;
-    console.log(this.operation);
     switch (this.operation) {
       case "+":
         computation = prev + current;
@@ -180,6 +179,10 @@ operationButtons.forEach((button) => {
 equalsButton.addEventListener("click", () => {
   calculator.compute();
   calculator.updateDisplay();
+       let prevStorage = localStorage.getItem("previous");
+       if (prevStorage) {
+         localStorage.setItem("previous", "");
+       }
 });
 
 allClearButton.addEventListener("click", () => {
