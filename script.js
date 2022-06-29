@@ -10,10 +10,18 @@ class Calculator {
     this.currentOperand = "";
     this.previousOperand = "";
     this.operation = undefined;
+     let prev = localStorage.getItem("previous");
+     if (prev) {
+       localStorage.setItem("previous", "");
+     }
   }
 
   delete() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    let prev = localStorage.getItem("previous");
+    if (prev) {
+      localStorage.setItem("previous", "");
+    }
   }
 
   //each time a user pushes a number button...
