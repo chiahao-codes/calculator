@@ -10,18 +10,11 @@ class Calculator {
     this.currentOperand = "";
     this.previousOperand = "";
     this.operation = undefined;
-     let prev = localStorage.getItem("previous");
-     if (prev) {
-       localStorage.setItem("previous", "");
-     }
+    
   }
 
   delete() {
     this.currentOperand = this.currentOperand.toString().slice(0, -1);
-    let prev = localStorage.getItem("previous");
-    if (prev) {
-      localStorage.setItem("previous", "");
-    }
   }
 
   //each time a user pushes a number button...
@@ -144,23 +137,6 @@ const calculator = new Calculator(
   currentOperandTextElement
 );
 
-window.addEventListener("load", (e) => {
-  console.log("Loaded...");
-
-  let currently = localStorage.getItem("current");
-  let previously = localStorage.getItem("previous");
-
-  if (currently) {
-    document.querySelector("[data-current-operand]").innerText = currently;
-
-  }
-
-  if (previously) {
-    document.querySelector("[data-previous-operand]").innerText = previously;
-  }
-
-})
-
 //each time a user clicks a number-button, update the screen;
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -188,11 +164,33 @@ equalsButton.addEventListener("click", () => {
 allClearButton.addEventListener("click", () => {
   calculator.clear();
   calculator.updateDisplay();
+   let prev = localStorage.getItem("previous");
+   if (prev) {
+     localStorage.setItem("previous", "");
+   }
 });
 
 deleteButton.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
+   let prev = localStorage.getItem("previous");
+   if (prev) {
+     localStorage.setItem("previous", "");
+   }
 });
 
+window.addEventListener("load", (e) => {
+  console.log("Loaded...");
+
+  let currently = localStorage.getItem("current");
+  let previously = localStorage.getItem("previous");
+
+  if (currently) {
+    document.querySelector("[data-current-operand]").innerText = currently;
+  }
+
+  if (previously) {
+    document.querySelector("[data-previous-operand]").innerText = previously;
+  }
+});
  
