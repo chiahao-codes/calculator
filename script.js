@@ -137,18 +137,19 @@ const calculator = new Calculator(
   currentOperandTextElement
 );
 
-window.addEventListener("load", (e, previousOperandTextElement, currentOperandTextElement) => {
+window.addEventListener("load", (e) => {
   console.log("Loaded...");
 
   let currently = localStorage.getItem("current");
   let previously = localStorage.getItem("previous");
 
   if (currently) {
-    console.log(currentOperandTextElement.innerText);
+    document.querySelector("[data-current-operand]").innerText = currently;
+
   }
 
   if (previously) {
-   console.log(previousOperandTextElement.innerText);
+    document.querySelector("[data-previous-operand]").innerText = previously;
   }
 
 })
