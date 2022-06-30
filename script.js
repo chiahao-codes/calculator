@@ -32,13 +32,6 @@ class Calculator {
   //set previous operand to current operand; moves the number/operation input to upper screen;
   //clear up current operand;
   chooseOperation(operation) {
-    
-    if (loaded) {
-     let curr = localStorage.getItem("current");
-      let previ = localStorage.getItem("previous");
-      this.currentOperand = curr;
-      this.previousOperand = previ;
-    }
 
     if (this.currentOperand === "") {
       return;
@@ -187,10 +180,9 @@ deleteButton.addEventListener("click", () => {
    }
 });
 
-let loaded;
+
 window.addEventListener("load", (e) => {
   console.log("Loaded...");
-
   let currently = localStorage.getItem("current");
   let previously = localStorage.getItem("previous");
 
@@ -202,6 +194,5 @@ window.addEventListener("load", (e) => {
     document.querySelector("[data-previous-operand]").innerText = previously;
   }
 
-  loaded = true;
 });
  
