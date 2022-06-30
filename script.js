@@ -63,16 +63,6 @@ class Calculator {
     prev = parseFloat(prevLocal);
     current = parseFloat(currLocal);
 
-    /** 
-     * if (currLocal && prevLocal) {
-      prev = parseFloat(prevLocal);
-      current = parseFloat(currLocal);
-    } else {
-      prev = parseFloat(this.previousOperand);
-      current = parseFloat(this.currentOperand);
-    }
-    */
-
     //checks if there is a number to compute inside previous or current operand;
     if (isNaN(prev) || isNaN(current)) {
       return;
@@ -139,7 +129,6 @@ class Calculator {
      currentOperandTextElement
    );
 
-   //each time a user clicks a number-button, update the screen;
    numberButtons.forEach((button) => {
      button.addEventListener("click", () => {
        calculator.appendNumber(button.innerText);
@@ -173,6 +162,6 @@ class Calculator {
 
    window.addEventListener("load", (e) => {
      console.log("Loaded...");
-     
+     calculator.updateDisplay();
    });
  
