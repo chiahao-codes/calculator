@@ -63,16 +63,6 @@ class Calculator {
     prev = parseFloat(prevLocal);
     current = parseFloat(currLocal);
 
-    /** 
-     * if (currLocal && prevLocal) {
-      prev = parseFloat(prevLocal);
-      current = parseFloat(currLocal);
-    } else {
-      prev = parseFloat(this.previousOperand);
-      current = parseFloat(this.currentOperand);
-    }
-    */
-
     //checks if there is a number to compute inside previous or current operand;
     if (isNaN(prev) || isNaN(current)) {
       return;
@@ -173,6 +163,6 @@ class Calculator {
 
    window.addEventListener("load", (e) => {
      console.log("Loaded...");
-     
+     calculator.updateDisplay();
    });
  
