@@ -129,7 +129,6 @@ class Calculator {
      currentOperandTextElement
    );
 
-   //each time a user clicks a number-button, update the screen;
    numberButtons.forEach((button) => {
      button.addEventListener("click", () => {
        calculator.appendNumber(button.innerText);
