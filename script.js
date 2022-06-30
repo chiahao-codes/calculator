@@ -111,57 +111,54 @@ class Calculator {
     }
   }
 }
+ window.addEventListener("load", (e) => {
+   console.log("Loaded...");
+   //calculator app must run based on stored info in local storage;
+   const numberButtons = document.querySelectorAll("[data-number]");
+   const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
+   const equalsButton = document.querySelector("[data-equals]");
+   const deleteButton = document.querySelector("[data-delete]");
+   const allClearButton = document.querySelector("[data-all-clear]");
+   let previousOperandTextElement = document.querySelector(
+     "[data-previous-operand]"
+   );
+   let currentOperandTextElement = document.querySelector(
+     "[data-current-operand]"
+   );
 
-  const numberButtons = document.querySelectorAll("[data-number]");
-  const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
-  const equalsButton = document.querySelector("[data-equals]");
-  const deleteButton = document.querySelector("[data-delete]");
-  const allClearButton = document.querySelector("[data-all-clear]");
-  let previousOperandTextElement = document.querySelector(
-    "[data-previous-operand]"
-  );
-  let currentOperandTextElement = document.querySelector(
-    "[data-current-operand]"
-  );
+   let calculator = new Calculator(
+     previousOperandTextElement,
+     currentOperandTextElement
+   );
 
-  let calculator = new Calculator(
-    previousOperandTextElement,
-    currentOperandTextElement
-  );
+   //each time a user clicks a number-button, update the screen;
+   numberButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+       calculator.appendNumber(button.innerText);
+       calculator.updateDisplay();
+     });
+   });
 
-  //each time a user clicks a number-button, update the screen;
-  numberButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      calculator.appendNumber(button.innerText);
-      calculator.updateDisplay();
-    });
-  });
+   operationButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+       calculator.chooseOperation(button.innerText);
+       calculator.updateDisplay();
+     });
+   });
 
-  operationButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      calculator.chooseOperation(button.innerText);
-      calculator.updateDisplay();
-    });
-  });
+   equalsButton.addEventListener("click", () => {
+     calculator.compute();
+     calculator.updateDisplay();
+   });
 
-  equalsButton.addEventListener("click", () => {
-    calculator.compute();
-    calculator.updateDisplay();
-  });
+   allClearButton.addEventListener("click", () => {
+     calculator.clear();
+     calculator.updateDisplay();
+   });
 
-  allClearButton.addEventListener("click", () => {
-    calculator.clear();
-    calculator.updateDisplay();
-  });
-
-  deleteButton.addEventListener("click", () => {
-    calculator.delete();
-    calculator.updateDisplay();
-  });
-
-
-  window.addEventListener("load", (e) => {
-    console.log("Loaded...");
-    //calculator app must run based on stored info in local storage;
-  });
+   deleteButton.addEventListener("click", () => {
+     calculator.delete();
+     calculator.updateDisplay();
+   });
+ });
  
