@@ -4,8 +4,9 @@ class Calculator {
     //sets textElement property values inside the Calculator class;
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
-    this.currentOperand = "";
-    this.previousOperand = "";
+    this.currentOperand = localStorage.getItem("current")
+    this.previousOperand = localStorage.getItem("previous");
+    this.operation = localStorage.getItem("operation");
   }
   clear() {
     this.currentOperand = "";
@@ -59,13 +60,18 @@ class Calculator {
       computation;
 
     //convert strings to numbers;
-    if (currLocal && prevLocal) {
+    prev = parseFloat(prevLocal);
+    current = parseFloat(currLocal);
+
+    /** 
+     * if (currLocal && prevLocal) {
       prev = parseFloat(prevLocal);
       current = parseFloat(currLocal);
     } else {
       prev = parseFloat(this.previousOperand);
       current = parseFloat(this.currentOperand);
     }
+    */
 
     //checks if there is a number to compute inside previous or current operand;
     if (isNaN(prev) || isNaN(current)) {
@@ -96,6 +102,7 @@ class Calculator {
 
     localStorage.setItem("current", currNumToString);
     localStorage.setItem("previous", this.previousOperand);
+    localStorage.setItem("operation", this.operation);
   }
 
   //updates the display screen after other methods are ran;
@@ -106,15 +113,14 @@ class Calculator {
       this.currentOperandTextElement.innerText = "";
     }
 
-    if (this.operation) {
+    if (localStorage.getItem("previous")) {
       this.previousOperandTextElement.innerText = `${localStorage.getItem("previous")} ${this.operation}`;
     } else {
       this.previousOperandTextElement.innerText = "";
     }
   }
 }
- window.addEventListener("load", (e) => {
-   console.log("Loaded...");
+ 
    //calculator app must run based on stored info in local storage;
    const numberButtons = document.querySelectorAll("[data-number]");
    const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
@@ -143,6 +149,7 @@ class Calculator {
 
    operationButtons.forEach((button) => {
      button.addEventListener("click", () => {
+       if(!currentOperandTextElement.innerText){return}
        calculator.chooseOperation(button.innerText);
        calculator.updateDisplay();
      });
@@ -162,5 +169,10 @@ class Calculator {
      calculator.delete();
      calculator.updateDisplay();
    });
- });
+
+
+   window.addEventListener("load", (e) => {
+     console.log("Loaded...");
+     
+   });
  
