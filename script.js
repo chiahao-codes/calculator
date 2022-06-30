@@ -4,6 +4,8 @@ class Calculator {
     //sets textElement property values inside the Calculator class;
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
+    this.currentOperand = "";
+    this.previousOperand = "";
   }
   clear() {
     this.currentOperand = "";
