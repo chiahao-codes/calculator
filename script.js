@@ -1,5 +1,6 @@
 window.addEventListener("load", (e) => {
   console.log("Loaded...");
+  localStorage.setItem("current", "0");
   calculator.updateDisplay();
 });
 
@@ -35,8 +36,7 @@ class Calculator {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
     } else {
-      console.log(this.currentOperand, number);
-      //this.currentOperand = this.currentOperand.toString() + number.toString();
+      this.currentOperand = this.currentOperand.toString() + number.toString();
       localStorage.setItem("current", this.currentOperand);
     }
     return this.currentOperand;
@@ -108,8 +108,8 @@ class Calculator {
       this.currentOperandTextElement.innerText =
         localStorage.getItem("current");
     } else {
-      localStorage.setItem("current", "0");
-      this.currentOperandTextElement.innerText = "0";
+      
+      this.currentOperandTextElement.innerText = "";
     }
 
     if (localStorage.getItem("previous")) {
