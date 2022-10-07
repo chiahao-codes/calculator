@@ -146,6 +146,7 @@ numberButtons.forEach((button) => {
   });
 });
 
+
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (!currentOperandTextElement.innerText) {
