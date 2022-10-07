@@ -20,6 +20,8 @@ class Calculator {
     this.previousOperand = "";
     this.operation = undefined;
     localStorage.clear();
+    localStorage.setItem("initialZero", "true");
+    localStorage.setItem("current", "0");
   }
 
   delete() {
@@ -27,6 +29,8 @@ class Calculator {
     localStorage.setItem("current", this.currentOperand);
     if (!localStorage.getItem("current")) {
       localStorage.clear();
+      localStorage.setItem("initialZero", "true");
+      localStorage.setItem("current", "0");
     }
   }
 
