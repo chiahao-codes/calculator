@@ -16,8 +16,8 @@ body{
 
 .calculator_grid{
     display: grid;
-    justify-content: center; /*main axis*/
-    align-content: center; /*cross axis; flex-lines alignment*/
+    justify-content: center; 
+    align-content: center; 
     min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows:  repeat(6,minmax(100px, auto)) ;
