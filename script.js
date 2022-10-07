@@ -43,10 +43,10 @@ class Calculator {
       localStorage.removeItem("current"); //get rid of 0 in storage;
       localStorage.setItem("current", number.toString()); // set new current number;
       this.currentOperand = localStorage.getItem("current");
-      this.currentOperandTextElement = this.currentOperand.toString();
+      //this.currentOperandTextElement = this.currentOperand.toString();
     } else {
       this.currentOperand = this.currentOperand.toString() + number.toString();
-      this.currentOperandTextElement = this.currentOperand;
+      //this.currentOperandTextElement = this.currentOperand;
       localStorage.setItem("current", this.currentOperand);
     }
     
