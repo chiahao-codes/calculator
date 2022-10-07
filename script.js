@@ -1,5 +1,7 @@
 window.addEventListener("load", (e) => {
   console.log("Loaded...");
+  localStorage.setItem("initialZero", "true");
+  localStorage.setItem("current", "0");
   calculator.updateDisplay();
 });
 
@@ -34,16 +36,16 @@ class Calculator {
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
-    } else if(this.currentOperand === null) {
-      this.currentOperand = "0";
-      localStorage.setItem("initialZero", "true");
-      localStorage.setItem("current", this.currentOperand);
+    } else if (localStorage.getItem("initialZero") === "true") {
+      
+      localStorage.setItem("initialZero", "false");
+      
+      localStorage.removeItem("current"); //get rid of 0 in storage;
+      localStorage.setItem("current", number.toString()); // set new current number;
+      //this.currentOperand = localStorage.getItem("current");
+      this.currentOperandTextElement = this.currentOperand.toString();
     } else {
-      if (localStorage.getItem("initialZero") === "true") {
-        localStorage.setItem("initialZero", "false");
-      }
       this.currentOperand = this.currentOperand.toString() + number.toString();
-      // remove zero from display;
       this.currentOperandTextElement = this.currentOperand;
       localStorage.setItem("current", this.currentOperand);
     }
@@ -117,7 +119,6 @@ class Calculator {
       this.currentOperandTextElement.innerText =
         localStorage.getItem("current");
     } else {
-      
       this.currentOperandTextElement.innerText = "";
     }
 
