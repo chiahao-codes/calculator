@@ -35,7 +35,7 @@ class Calculator {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
     } else {
-      this.currentOperand = this.currentOperand.toString() + number.toString();
+      //this.currentOperand = this.currentOperand.toString() + number.toString();
       localStorage.setItem("current", this.currentOperand);
     }
     return this.currentOperand;
