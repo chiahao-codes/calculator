@@ -122,6 +122,7 @@ class Calculator {
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
+console.log(numberButtons);
 const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
@@ -139,7 +140,6 @@ let calculator = new Calculator(
 );
 
 numberButtons.forEach((button) => {
-  console.log(`numberButtons:${button}`);
   button.addEventListener("click", () => {
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
