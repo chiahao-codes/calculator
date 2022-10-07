@@ -35,7 +35,7 @@ class Calculator {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
     } else {
-      //this.currentOperand = this.currentOperand.toString() + number.toString();
+      this.currentOperand = this.currentOperand.toString() + number.toString();
       localStorage.setItem("current", this.currentOperand);
     }
     return this.currentOperand;
@@ -107,7 +107,8 @@ class Calculator {
       this.currentOperandTextElement.innerText =
         localStorage.getItem("current");
     } else {
-      this.currentOperandTextElement.innerText = "";
+      localStorage.setItem("current", "0");
+      this.currentOperandTextElement.innerText = "0";
     }
 
     if (localStorage.getItem("previous")) {
