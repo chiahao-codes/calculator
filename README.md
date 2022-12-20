@@ -2,6 +2,8 @@
 ![Version](https://img.shields.io/badge/version-1-blue.svg?cacheSeconds=2592000)
 [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](#)
 
+![Calculator screenshot](./calculator_scrnshot.png)
+
 >  This is a standard calculator application based in the browser. It performs simple arithmetic for the user.
 
 ### 🏠 [Homepage](https://chiahao-codes.github.io/calculator/)
