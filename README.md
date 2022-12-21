@@ -17,7 +17,7 @@ I looked to articles and videos posted online by established web developers. Aft
 
 
 ## How To Use
-[Click Here!](https://chiahao-codes.github.io/calculator/)
+![Click Here!](https://chiahao-codes.github.io/calculator/)
 
 
 ## Author
