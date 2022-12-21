@@ -2,8 +2,7 @@
 ![Version](https://img.shields.io/badge/version-1-blue.svg?cacheSeconds=2592000)
 [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](#)
 
-
-![Calculator screenshot](./calculator_scrnshot.png)
+<picture align = "center"><img alt= "calculator screenshot" src="./calculator_scrnshot.png" style = "width=100%"></picture>
 
 
 ## Description
