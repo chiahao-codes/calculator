@@ -3,7 +3,7 @@
 [![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](#)
 
 
-<picture align = "center"><img alt= "calculator screenshot" src="./calculator_scrnshot.png" style = "margin-left=auto, margin-right=auto"></picture>
+<picture><img alt= "calculator screenshot" src="./calculator_scrnshot.png" style = "margin-left=auto, margin-right=auto"></picture>
 
 
 ## Description
