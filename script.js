@@ -14,6 +14,7 @@ class Calculator {
     this.currentOperand = localStorage.getItem("current");
     this.previousOperand = localStorage.getItem("previous");
     this.operation = localStorage.getItem("operation");
+    this.calculated = localStorage.getItem("calculated");
   }
   clear() {
     this.currentOperand = "";
@@ -22,6 +23,7 @@ class Calculator {
     localStorage.clear();
     localStorage.setItem("initialZero", "true");
     localStorage.setItem("current", "0");
+    localStorage.setItem("calculated", "false");
   }
 
   delete() {
@@ -40,7 +42,14 @@ class Calculator {
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
-    } else if (localStorage.getItem("initialZero") === "true") {
+    }
+    
+    if (localStorage.getItem("calculated") === "true") {
+      //clear display if there is a preexisting calculation shown;
+      calculator.clear();
+    }
+    
+    if (localStorage.getItem("initialZero") === "true") {
       
       localStorage.setItem("initialZero", "false");
       
@@ -109,12 +118,14 @@ class Calculator {
     this.currentOperand = computation; //number;
     this.operation = undefined;
     this.previousOperand = "";
+    this.calculated = "true";
 
     let currNumToString = this.currentOperand.toString();
-
+    
     localStorage.setItem("current", currNumToString);
     localStorage.setItem("previous", this.previousOperand);
     localStorage.setItem("operation", this.operation);
+    localStorage.setItem("calculated", this.calculated);
   }
 
   //updates the display screen after other methods are ran;
@@ -138,7 +149,6 @@ class Calculator {
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
-console.log(numberButtons);
 const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
@@ -161,7 +171,6 @@ numberButtons.forEach((button) => {
     calculator.updateDisplay();
   });
 });
-
 
 
 operationButtons.forEach((button) => {
