@@ -28,7 +28,7 @@ body{
     font-size:2rem; /*rem = Root element font size; default is 16px*/
     border:1px solid white;
     outline: none;
-    background-color:rgba(175, 11, 11, 0.75);
+    background-color:rgba(106, 3, 3, 0.75);
 }
 
 .calculator_grid > button:hover{
