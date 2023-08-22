@@ -22,14 +22,11 @@ body {
   align-content: center;
   height: 50%;
   width: fit-content;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(6, minmax(100px, auto));
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .calculator_grid > button {
   cursor: pointer;
-  font-size: 2rem; /*rem = Root element font size; default is 16px*/
   border: 1px solid white;
   outline: none;
   background-color: rgba(215, 4, 4, 0.98);
@@ -56,12 +53,10 @@ body {
 
 .output .previous_operand {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 1.5rem;
 }
 
 .output .current_operand {
   color: white;
-  font-size: 2.5rem;
 }
 
 @media screen and (min-width: 320px) and (max-width: 450.99px) {
@@ -73,6 +68,18 @@ body {
     grid-template-columns: repeat(4, 50px);
     grid-template-rows: repeat(6, minmax(50px, auto));
   }
+
+  .calculator_grid > button {
+    font-size: 12px;
+  }
+
+  .output .previous_operand {
+    font-size: 12px;
+  }
+
+  .output .current_operand {
+    font-size: 14px;
+  }
 }
 
 @media screen and (min-width: 451px) {
@@ -82,5 +89,13 @@ body {
   .calculator_grid {
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(6, minmax(100px, auto));
+  }
+
+  .output .previous_operand {
+    font-size: 16px;
+  }
+
+  .output .current_operand {
+    font-size: 18px;
   }
 }
