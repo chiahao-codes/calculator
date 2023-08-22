@@ -31,6 +31,7 @@ body {
   border: 1px solid white;
   outline: none;
   background-color: rgba(215, 4, 4, 0.98);
+  overflow: hidden;
 }
 
 .calculator_grid > button:hover {
@@ -50,6 +51,7 @@ body {
   justify-content: space-around;
   padding: 1vmin;
   word-break: break-all; /*breaks text at the point of overflow*/
+  overflow: hidden;
 }
 
 .output .previous_operand {
@@ -92,14 +94,14 @@ body {
     grid-template-rows: repeat(6, minmax(100px, auto));
   }
   .output .previous_operand {
-    font-size: 48px;
+    font-size: 46px;
   }
 
   .output .current_operand {
-    font-size: 52px;
+    font-size: 50px;
   }
 
   .calculator_grid > button {
-    font-size: 50px;
+    font-size: 48px;
   }
 }
