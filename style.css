@@ -28,11 +28,11 @@ body{
     font-size:2rem; /*rem = Root element font size; default is 16px*/
     border:1px solid white;
     outline: none;
-    background-color:rgba(106, 3, 3, 0.75);
+    background-color:rgba(248, 4, 4, 0.98);
 }
 
 .calculator_grid > button:hover{
-    background-color:rgba(248, 4, 4, 0.98);
+    background-color:rgba(97, 2, 2, 0.98);
 }
 
 .span-two {
