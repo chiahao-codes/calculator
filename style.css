@@ -4,7 +4,7 @@
 /*All elements, before each and after each, will have these property values*/
 * {
   box-sizing: border-box; /*padding and border are factored into sizing of elements*/
-  font-family: "Dongle", sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   font-weight: normal;
 }
 
@@ -23,6 +23,7 @@ body {
   height: 50%;
   width: fit-content;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-family: inherit;
 }
 
 .calculator_grid > button {
@@ -91,15 +92,15 @@ body {
     grid-template-rows: repeat(6, minmax(100px, auto));
   }
   .output .previous_operand {
-  font-size: 76px;
+  font-size: 68px;
 }
 
 .output .current_operand {
-  font-size: 80px;
+  font-size: 72px;
 }
 
 .calculator_grid > button {
-    font-size: 79px;
+    font-size: 70px;
 }
 
 }
