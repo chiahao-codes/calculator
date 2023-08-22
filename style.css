@@ -71,15 +71,15 @@ body {
   }
 
   .output .previous_operand {
-    font-size: 23px;
+    font-size: 17px;
   }
 
   .output .current_operand {
-    font-size: 27px;
+    font-size: 20px;
   }
 
   .calculator_grid > button {
-    font-size: 25px;
+    font-size: 18px;
   }
 }
 
@@ -92,14 +92,14 @@ body {
     grid-template-rows: repeat(6, minmax(100px, auto));
   }
   .output .previous_operand {
-    font-size: 58px;
+    font-size: 48px;
   }
 
   .output .current_operand {
-    font-size: 62px;
+    font-size: 52px;
   }
 
   .calculator_grid > button {
-    font-size: 60px;
+    font-size: 50px;
   }
 }
