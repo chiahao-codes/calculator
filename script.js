@@ -46,7 +46,12 @@ class Calculator {
     
     if (localStorage.getItem("calculated") === "true") {
       //clear display if there is a preexisting calculation shown;
-      calculator.clear();
+      localStorage.setItem("calculated", "false");
+        this.currentOperand = "";
+        this.previousOperand = "";
+        this.operation = undefined;
+        localStorage.setItem("initialZero", "true");
+        localStorage.setItem("current", "0");
     }
     
     if (localStorage.getItem("initialZero") === "true") {
