@@ -11,7 +11,7 @@
 body{
     padding:0;
     margin:0;
-    background:linear-gradient(to right, #151616, rgb(156, 206, 240)); 
+    background:#ffff; 
 }
 
 .calculator_grid{
@@ -28,11 +28,11 @@ body{
     font-size:2rem; /*rem = Root element font size; default is 16px*/
     border:1px solid white;
     outline: none;
-    background-color:rgba(255,255,255, .75);
+    background-color:rgba(175, 11, 11, 0.75);
 }
 
 .calculator_grid > button:hover{
-    background-color:rgba(255,255,255, .98);
+    background-color:rgba(248, 4, 4, 0.98);
 }
 
 .span-two {
