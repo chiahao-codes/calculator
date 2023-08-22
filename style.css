@@ -18,8 +18,7 @@ body{
     display: grid;
     justify-content: center; 
     align-content: center; 
-    max-height: 80vh;
-    min-height: 80vh;
+    max-height: 80%;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows:  repeat(6,minmax(100px, auto)) ;
 }
