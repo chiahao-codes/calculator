@@ -20,7 +20,8 @@ body{
     align-content: center; 
     height: 60%;
     grid-template-columns: repeat(4, 100px);
-    grid-template-rows:  repeat(6,minmax(100px, auto)) ;
+    grid-template-rows:  repeat(6,minmax(100px, auto));
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .calculator_grid > button{
