@@ -80,7 +80,7 @@ body {
     display: block;
   }
   .calculator_grid {
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(6, minmax(50px, auto));
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, minmax(100px, auto));
   }
 }
