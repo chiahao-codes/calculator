@@ -18,7 +18,7 @@ body{
     display: grid;
     justify-content: center; 
     align-content: center; 
-    height: 60%;
+    height: 50%;
     width: fit-content;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows:  repeat(6,minmax(100px, auto));
