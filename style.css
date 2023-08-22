@@ -71,16 +71,16 @@ body {
   }
 
   .output .previous_operand {
-  font-size: 28px;
-}
+    font-size: 23px;
+  }
 
-.output .current_operand {
-  font-size: 32px;
-}
+  .output .current_operand {
+    font-size: 27px;
+  }
 
-.calculator_grid > button {
-    font-size: 31px;
-}
+  .calculator_grid > button {
+    font-size: 25px;
+  }
 }
 
 @media screen and (min-width: 451px) {
@@ -92,15 +92,14 @@ body {
     grid-template-rows: repeat(6, minmax(100px, auto));
   }
   .output .previous_operand {
-  font-size: 68px;
-}
+    font-size: 58px;
+  }
 
-.output .current_operand {
-  font-size: 72px;
-}
+  .output .current_operand {
+    font-size: 62px;
+  }
 
-.calculator_grid > button {
-    font-size: 70px;
-}
-
+  .calculator_grid > button {
+    font-size: 60px;
+  }
 }
