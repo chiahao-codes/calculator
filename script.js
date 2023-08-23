@@ -44,31 +44,30 @@ class Calculator {
       return;
     }
 
-    //if a computation is still in progress...
-    //set the current operand for computation...
-    if (localStorage.getItem("calculated") === "true" && localStorage.getItem("previous") !== "" && localStorage.getItem("operation") !== ""
-    && localStorage.getItem("current") === "") {
-      localStorage.setItem("current", number.toString()); // set new current number;
-      this.currentOperand = localStorage.getItem("current");
+    //if computation is still in progress...
+    if (localStorage.getItem("previous") && localStorage.getItem("operation") && localStorage.getItem("current") === "") {
+      this.compute(number);
+      this.updateDisplay();
+      return
     }
 
     //if no existing computation is going on...
+    //reset current operand;
     if (localStorage.getItem("calculated") === "true" && localStorage.getItem("previous") === "") {
-      //clear display if there is a preexisting calculation shown;
+      //clear display if there is a preexisting calculation result shown;
       localStorage.setItem("calculated", "false");
-        this.currentOperand = "";
-        localStorage.setItem("initialZero", "true");
-        localStorage.setItem("current", "0");
+      this.calculated = localStorage.getItem("calculated");
+      this.currentOperand = "";
     }
     
-    if (localStorage.getItem("initialZero") === "true") {
+    if (localStorage.getItem("initialZero") === "true" || localStorage.getItem("calculated") === "false") {
       localStorage.setItem("initialZero", "false");
-      
       localStorage.removeItem("current"); //get rid of 0 in storage;
       localStorage.setItem("current", number.toString()); // set new current number;
       this.currentOperand = localStorage.getItem("current");
     } else {
-      this.currentOperand = this.currentOperand.toString() + number.toString();
+      //set the current operand for computation...
+      this.currentOperand = localStorage.getItem("current") + number.toString();
       localStorage.setItem("current", this.currentOperand);
     }
     
@@ -92,13 +91,17 @@ class Calculator {
   }
 
   //compute the mathematical expressions and display on screen;
-  compute() {
+  compute(number) {
     let currLocal = localStorage.getItem("current"),
       prevLocal = localStorage.getItem("previous"),
       prev,
       current,
       computation;
-
+    
+    //if a computation is still in progress, number param entered will be used for computing;
+    if (localStorage.getItem("current") === "") {
+      currLocal = number;
+}
     //convert strings to numbers;
     prev = parseFloat(prevLocal);
     current = parseFloat(currLocal);
@@ -135,6 +138,8 @@ class Calculator {
     localStorage.setItem("previous", this.previousOperand);
     localStorage.setItem("operation", this.operation);
     localStorage.setItem("calculated", this.calculated);
+
+    return
   }
 
   //updates the display screen after other methods are ran;
@@ -153,6 +158,7 @@ class Calculator {
     } else {
       this.previousOperandTextElement.innerText = "";
     }
+    return
   }
 }
 
@@ -177,15 +183,6 @@ let calculator = new Calculator(
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.appendNumber(button.innerText);
-    //if calculation is in progress...
-    if (
-      localStorage.getItem("calculated") === "true" &&
-      localStorage.getItem("previous") !== "" &&
-      localStorage.getItem("operation") !== "" &&
-      localStorage.getItem("current") !== ""
-    ) {
-      calculator.compute();
-    }
     calculator.updateDisplay();
   });
 });
