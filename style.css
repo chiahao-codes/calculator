@@ -13,16 +13,20 @@ body {
   padding: 50px 0px;
   margin: 0;
   background: #e9e7e7;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 body #maintenance_container {
   position:relative;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin:auto;
+  gap:5px;
+  width: 45%;
   color:rgb(0, 0, 0);
+  font-family: inherit;
 }
 
 .calculator_grid {
