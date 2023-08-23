@@ -135,11 +135,12 @@ class Calculator {
   }
 
   //updates the display screen after other methods are ran;
-  updateDisplay(numbStr="") {
-    if (localStorage.getItem("current")) {
+  updateDisplay(numbStr = "") {
+    let initialZeroLS = localStorage.getItem("initialZero");
+    if (initialZeroLS !== "true") {
       this.currentOperandTextElement.innerText += `${numbStr}`
     } else {
-      this.currentOperandTextElement.innerText = localStorage.getItem("current");
+      this.currentOperandTextElement.innerText = "0";
     }
 
     if (localStorage.getItem("previous")) {
