@@ -19,13 +19,14 @@ body {
 body #maintenance_container {
   position:relative;
   bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  gap:5px;
   color:rgb(0, 0, 0);
   font-family: inherit;
+  width:100%;
+}
+
+body #maintenance_container #maintenance {
+  width:40%;
+  margin:auto;
 }
 
 .calculator_grid {
