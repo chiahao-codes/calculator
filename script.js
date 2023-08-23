@@ -41,25 +41,15 @@ class Calculator {
       return;
     }
 
-    //if no existing computation is going on, but previous calculation is still displayed
-    if (
-      localStorage.getItem("calculated") === "true" &&
-      localStorage.getItem("previous") === ""
-    ) {
-      //clear display if there is a preexisting calculation result shown;
-
-      localStorage.setItem("calculated", "false");
-      this.calculated = localStorage.getItem("calculated");
-      this.currentOperand = "";
-    }
-
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
-      localStorage.setItem("current", number.toString()); // set new current number;
-      this.currentOperand = localStorage.getItem("current");
+      //remove initial zero:
+      localStorage.removeItemItem("current");
     }
 
+    localStorage.setItem("current", number.toString()); // set new current number;
+    this.currentOperand = localStorage.getItem("current");
     return this.currentOperand;
   }
 
