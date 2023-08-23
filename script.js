@@ -36,41 +36,32 @@ class Calculator {
     }
   }
 
-  //each time a user pushes a number button...
-  //set a property called currentOperand equal to stringified value of the number + currentOperand;
-  //calculator's screen will append each number in the order of input on the screen;
   appendNumber(number) {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
     }
 
-    //if computation is still in progress...
-    if (localStorage.getItem("previous") && localStorage.getItem("operation") && localStorage.getItem("current") === "") {
-      this.compute(number);
-      this.updateDisplay();
-      return
-    }
-
-    //if no existing computation is going on...
-    //reset current operand;
-    if (localStorage.getItem("calculated") === "true" && localStorage.getItem("previous") === "") {
+    //if no existing computation is going on, but previous calculation is still displayed
+    if (
+      localStorage.getItem("calculated") === "true" &&
+      localStorage.getItem("previous") === ""
+    ) {
       //clear display if there is a preexisting calculation result shown;
       localStorage.setItem("calculated", "false");
       this.calculated = localStorage.getItem("calculated");
       this.currentOperand = "";
     }
-    
-    if (localStorage.getItem("initialZero") === "true" || localStorage.getItem("calculated") === "false") {
+
+    //if starting with 0 in the current display;
+    if (
+      localStorage.getItem("initialZero") === "true" ||
+      localStorage.getItem("calculated") === "false"
+    ) {
       localStorage.setItem("initialZero", "false");
-      localStorage.removeItem("current"); //get rid of 0 in storage;
       localStorage.setItem("current", number.toString()); // set new current number;
       this.currentOperand = localStorage.getItem("current");
-    } else {
-      //set the current operand for computation...
-      this.currentOperand = localStorage.getItem("current") + number.toString();
-      localStorage.setItem("current", this.currentOperand);
     }
-    
+
     return this.currentOperand;
   }
 
@@ -91,17 +82,12 @@ class Calculator {
   }
 
   //compute the mathematical expressions and display on screen;
-  compute(number) {
-    let currLocal = localStorage.getItem("current"),
-      prevLocal = localStorage.getItem("previous"),
-      prev,
-      current,
-      computation;
-    
-    //if a computation is still in progress, number param entered will be used for computing;
-    if (localStorage.getItem("current") === "") {
-      currLocal = number;
-}
+  compute() {
+    let currLocal, prevLocal, prev, current, computation;
+
+    currLocal = localStorage.getItem("current");
+    prevLocal = localStorage.getItem("previous");
+
     //convert strings to numbers;
     prev = parseFloat(prevLocal);
     current = parseFloat(currLocal);
@@ -110,6 +96,7 @@ class Calculator {
     if (isNaN(prev) || isNaN(current)) {
       return;
     }
+
     //perform math computation based on the operation button selected;
     switch (this.operation) {
       case "+":
@@ -127,19 +114,27 @@ class Calculator {
       default:
         return;
     }
-    this.currentOperand = computation; //number;
-    this.operation = undefined;
-    this.previousOperand = "";
-    this.calculated = "true";
 
-    let currNumToString = this.currentOperand.toString();
+    //Note: Build a separate function for ongoing computation display;
+
+      this.currentOperand = computation; //number;
+      this.operation = undefined;
+      this.previousOperand = "";
+      this.calculated = "true";
+
+      let currNumToString = this.currentOperand.toString();
+
+      localStorage.setItem("current", currNumToString);
+      localStorage.setItem("previous", this.previousOperand);
+      localStorage.setItem("operation", this.operation);
+      localStorage.setItem("calculated", this.calculated);
     
-    localStorage.setItem("current", currNumToString);
-    localStorage.setItem("previous", this.previousOperand);
-    localStorage.setItem("operation", this.operation);
-    localStorage.setItem("calculated", this.calculated);
 
-    return
+    return;
+  }
+
+  onGoingCalculation() {
+    
   }
 
   //updates the display screen after other methods are ran;
@@ -152,13 +147,13 @@ class Calculator {
     }
 
     if (localStorage.getItem("previous")) {
-      this.previousOperandTextElement.innerText = `${localStorage.getItem(
-        "previous"
-      )} ${this.operation}`;
+        this.previousOperandTextElement.innerText = `${localStorage.getItem(
+          "previous"
+        )} ${this.operation}`;
     } else {
       this.previousOperandTextElement.innerText = "";
     }
-    return
+    return;
   }
 }
 
