@@ -45,7 +45,7 @@ class Calculator {
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
       //remove initial zero:
-      localStorage.removeItemItem("current");
+      localStorage.removeItem("current");
     }
 
     localStorage.setItem("current", number.toString()); // set new current number;
