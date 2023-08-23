@@ -50,6 +50,7 @@ class Calculator {
 
     localStorage.setItem("current", number.toString()); // set new current number;
     this.currentOperand = localStorage.getItem("current");
+
     return this.currentOperand;
   }
 
@@ -134,12 +135,11 @@ class Calculator {
   }
 
   //updates the display screen after other methods are ran;
-  updateDisplay() {
+  updateDisplay(numbStr="") {
     if (localStorage.getItem("current")) {
-      this.currentOperandTextElement.innerText =
-        localStorage.getItem("current");
+      this.currentOperandTextElement.innerText += `${numbStr}`
     } else {
-      this.currentOperandTextElement.innerText = "";
+      this.currentOperandTextElement.innerText = localStorage.getItem("current");
     }
 
     if (localStorage.getItem("previous")) {
@@ -173,8 +173,8 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    calculator.appendNumber(button.innerText);
-    calculator.updateDisplay();
+    let currNumberEntry = calculator.appendNumber(button.innerText);
+    calculator.updateDisplay(currNumberEntry);
   });
 });
 
