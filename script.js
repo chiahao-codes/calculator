@@ -43,28 +43,32 @@ class Calculator {
     if (number === "." && this.currentOperand.includes(".")) {
       return;
     }
-    
-    if (localStorage.getItem("calculated") === "true") {
+
+    //if a computation is still in progress...
+    //set the current operand for computation...
+    if (localStorage.getItem("calculated") === "true" && localStorage.getItem("previous") !== "" && localStorage.getItem("operation") !== ""
+    && localStorage.getItem("current") === "") {
+      localStorage.setItem("current", number.toString()); // set new current number;
+      this.currentOperand = localStorage.getItem("current");
+    }
+
+    //if no existing computation is going on...
+    if (localStorage.getItem("calculated") === "true" && localStorage.getItem("previous") === "") {
       //clear display if there is a preexisting calculation shown;
       localStorage.setItem("calculated", "false");
         this.currentOperand = "";
-        this.previousOperand = "";
-        this.operation = undefined;
         localStorage.setItem("initialZero", "true");
         localStorage.setItem("current", "0");
     }
     
     if (localStorage.getItem("initialZero") === "true") {
-      
       localStorage.setItem("initialZero", "false");
       
       localStorage.removeItem("current"); //get rid of 0 in storage;
       localStorage.setItem("current", number.toString()); // set new current number;
       this.currentOperand = localStorage.getItem("current");
-      //this.currentOperandTextElement = this.currentOperand.toString();
     } else {
       this.currentOperand = this.currentOperand.toString() + number.toString();
-      //this.currentOperandTextElement = this.currentOperand;
       localStorage.setItem("current", this.currentOperand);
     }
     
@@ -173,6 +177,15 @@ let calculator = new Calculator(
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     calculator.appendNumber(button.innerText);
+    //if calculation is in progress...
+    if (
+      localStorage.getItem("calculated") === "true" &&
+      localStorage.getItem("previous") !== "" &&
+      localStorage.getItem("operation") !== "" &&
+      localStorage.getItem("current") !== ""
+    ) {
+      calculator.compute();
+    }
     calculator.updateDisplay();
   });
 });
