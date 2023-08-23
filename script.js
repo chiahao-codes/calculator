@@ -133,8 +133,16 @@ class Calculator {
     return;
   }
 
-  onGoingCalculation() {
-    
+  stillCalculating(latestEntry) {
+
+    //update display && keep track of calculation;
+    let latestEntryString = latestEntry.toString();
+    if (localStorage.getItem("previous") && localStorage.getItem("operation") && localStorage.getItem("calculated")) {
+      //calculate latest entry and store inside local storage:
+      
+
+      this.previousOperandTextElement.innerText =`${localStorage.getItem("previous")} ${this.operation} ${latestEntryString}`
+    }
   }
 
   //updates the display screen after other methods are ran;
