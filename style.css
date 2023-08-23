@@ -22,9 +22,8 @@ body #maintenance_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-content: center;
   gap:5px;
-  width: 45%;
   color:rgb(0, 0, 0);
   font-family: inherit;
 }
