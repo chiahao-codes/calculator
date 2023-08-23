@@ -15,6 +15,16 @@ body {
   background: #e9e7e7;
 }
 
+body #maintenance_container {
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+  color:rgb(0, 0, 0);
+}
+
 .calculator_grid {
   margin: auto;
   display: grid;
