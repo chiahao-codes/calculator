@@ -47,6 +47,7 @@ class Calculator {
       localStorage.getItem("previous") === ""
     ) {
       //clear display if there is a preexisting calculation result shown;
+      console.log("running...")
       localStorage.setItem("calculated", "false");
       this.calculated = localStorage.getItem("calculated");
       this.currentOperand = "";
