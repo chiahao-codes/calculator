@@ -47,17 +47,14 @@ class Calculator {
       localStorage.getItem("previous") === ""
     ) {
       //clear display if there is a preexisting calculation result shown;
-      console.log("running...")
+
       localStorage.setItem("calculated", "false");
       this.calculated = localStorage.getItem("calculated");
       this.currentOperand = "";
     }
 
     //if starting with 0 in the current display;
-    if (
-      localStorage.getItem("initialZero") === "true" ||
-      localStorage.getItem("calculated") === "false"
-    ) {
+    if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
       localStorage.setItem("current", number.toString()); // set new current number;
       this.currentOperand = localStorage.getItem("current");
