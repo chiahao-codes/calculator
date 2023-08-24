@@ -43,13 +43,9 @@ class Calculator {
       localStorage.removeItem("current");
       this.currentOperandTextElement.innerText = "";
     }
-
-    localStorage.setItem("current", number.toString()); // resets/sets new current number;
-
-    //update local storage display;
-    let display = localStorage.getItem("onDisplay");
-    display += localStorage.getItem("current");
-    localStorage.setItem("onDisplay", display);
+    let currentLS = localStorage.getItem("current");
+    currentLS += number.toString();
+    localStorage.setItem("current", currentLS); // resets/sets new current number;
     this.currentOperand = localStorage.getItem("current");
 
     return this.currentOperand;
