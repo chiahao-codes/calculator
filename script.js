@@ -120,7 +120,7 @@ class Calculator {
 
   //updates the display screen;
   updateDisplay() {
-    let regExp = /[.]/g;
+    let regExp = /\./g;
     let curr = localStorage.getItem("current");
 
     //if more than one decimal, remove previous decimal from curr;
