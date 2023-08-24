@@ -47,6 +47,7 @@ class Calculator {
 
   chooseOperation(operation) {
     if (this.currentOperand === "") {
+      console.log("1")
       return;
     }
     if (this.previousOperand !== "") {
@@ -179,6 +180,7 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     console.log("operations buttons listener running...")
+    console.log(button.innerText);
     if (currentOperandTextElement.innerText === "") {
       return;
     }
