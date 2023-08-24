@@ -37,11 +37,14 @@ class Calculator {
   }
 
   appendNumber(number) {
-    console.log(this.currentOperandTextElement.innerText); //doesn't include most recent entry;
-    console.log(number, localStorage.getItem("current"));
-    if (number === "." && localStorage.getItem("current") === number) {
-        return;
+    const regExp = /./;
+    console.log(this.currentOperand); //doesn't include most recent entry;
+    /**
+   *  if (number === "." && ) {
+      return;
     }
+
+   */
 
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
