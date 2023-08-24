@@ -38,8 +38,9 @@ class Calculator {
 
   appendNumber(number) {
     console.log(this.currentOperandTextElement.innerText);
-    if (number === "." && this.currentOperandTextElement.innerText.includes(".")) {
-      return;
+    if (number === ".") {
+      if (localStorage.getItem("current") === number)
+        return;
     }
 
     //if starting with 0 in the current display;
