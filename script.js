@@ -122,7 +122,7 @@ class Calculator {
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
         localStorage.setItem("initialZero", "false");
-        curr = curr.slice(0, 1);
+        curr = curr.slice(1);
       }
       //remove consecutive initial zeros
       if (curr[0] === "0" && curr[1] === "0") {
