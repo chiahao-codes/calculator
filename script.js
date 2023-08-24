@@ -38,7 +38,7 @@ class Calculator {
 
   appendNumber(number) {
     let currentDisplay = document.querySelector("[data-current-operand]");
- 
+    console.log(currentDisplay.innerText);
    if (number === "." && currentDisplay.innerText.includes(".")) {
       return;
     }
