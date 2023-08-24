@@ -38,13 +38,10 @@ class Calculator {
 
   appendNumber(number) {
     let currentDisplay = document.querySelector("[data-current-operand]");
-    console.log(currentDisplay);
-    /**
-   *  if (number === "." && ) {
+ 
+   if (number === "." && currentDisplay.innerText.includes(".")) {
       return;
     }
-
-   */
 
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
