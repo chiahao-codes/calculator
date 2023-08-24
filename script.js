@@ -39,11 +39,7 @@ class Calculator {
   }
 
   appendNumber(number) {
-    console.log(this.onDisplay);
-   if (number === "." ) {
-      
-    }
-
+    console.log(localStorage.getItem("onDisplay"), typeof localStorage.getItem("onDisplay"));
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
