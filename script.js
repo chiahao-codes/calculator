@@ -44,11 +44,9 @@ class Calculator {
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
-      //remove initial zero:
-      localStorage.removeItem("current");
     }
 
-    localStorage.setItem("current", number.toString()); // set new current number;
+    localStorage.setItem("current", number.toString()); // resets/sets new current number;
     this.currentOperand = localStorage.getItem("current");
 
     return this.currentOperand;
@@ -134,14 +132,17 @@ class Calculator {
     }
   }
 
-  //updates the display screen after other methods are ran;
+  //updates the display screen;
   updateDisplay(numbStr = "") {
     let initialZeroLS = localStorage.getItem("initialZero");
-    if (initialZeroLS !== "true") {
-      this.currentOperandTextElement.innerText = "";
-      this.currentOperandTextElement.innerText += `${numbStr}`;
-    } else {
-      this.currentOperandTextElement.innerText = "0";
+
+    if (initialZeroLS === "false") {
+      this.currentOperandTextElement.innerText += `${localStorage.getItem("current")}`;
+    }
+
+    if (initialZeroLS) {
+      localStorage.setItem("current", "0");
+      this.currentOperandTextElement.innerText = localStorage.getItem("current");
     }
 
     if (localStorage.getItem("previous")) {
