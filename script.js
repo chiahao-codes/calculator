@@ -37,7 +37,7 @@ class Calculator {
   }
 
   appendNumber(number) {
-    if (number === "." && this.currentOperand.includes(".")) {
+    if (number === "." && this.currentOperandTextElement.includes(".")) {
       return;
     }
 
