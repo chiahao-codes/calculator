@@ -120,7 +120,16 @@ class Calculator {
 
   //updates the display screen;
   updateDisplay() {
-    this.currentOperandTextElement.innerText = localStorage.getItem("current");
+    let regExp = /[.]/g;
+    let curr = localStorage.getItem("current");
+
+    //if more than one decimal, remove previous decimal from curr;
+    let decimalsArray = curr.match(regExp);
+    if (decimalsArray.length > 1) {
+     curr = curr.slice(0, -1);
+    }
+
+    this.currentOperandTextElement.innerText = curr;
 
     if (localStorage.getItem("previous")) {
       this.previousOperandTextElement.innerText = `${localStorage.getItem(
