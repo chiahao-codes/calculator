@@ -47,12 +47,13 @@ class Calculator {
 
   chooseOperation(operation) {
     if (this.currentOperand === "") {
-      console.log("1")
       return;
     }
     if (this.previousOperand !== "") {
+      console.log("previousOperand", this.previousOperand)
       this.compute();
     }
+    console.log("operation chosen:", operation);
     this.operation = operation;
     this.previousOperand = this.currentOperand;
     this.currentOperand = "";
@@ -180,7 +181,6 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     console.log("operations buttons listener running...")
-    console.log(button.innerText);
     if (currentOperandTextElement.innerText === "") {
       return;
     }
