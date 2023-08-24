@@ -37,7 +37,8 @@ class Calculator {
   }
 
   appendNumber(number) {
-    console.log(this.currentOperandTextElement.innerText);
+    console.log(this.currentOperandTextElement.innerText); //doesn't include most recent entry;
+    console.log(number, localStorage.getItem("current"));
     if (number === ".") {
       if (localStorage.getItem("current") === number)
         return;
