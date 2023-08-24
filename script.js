@@ -44,6 +44,7 @@ class Calculator {
     //if starting with 0 in the current display;
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
+      localStorage.removeItem("current");
     }
 
     localStorage.setItem("current", number.toString()); // resets/sets new current number;
@@ -140,7 +141,7 @@ class Calculator {
       this.currentOperandTextElement.innerText += `${localStorage.getItem("current")}`;
     }
 
-    if (initialZeroLS) {
+    if (initialZeroLS === "true") {
       localStorage.setItem("current", "0");
       this.currentOperandTextElement.innerText = localStorage.getItem("current");
     }
