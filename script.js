@@ -37,8 +37,8 @@ class Calculator {
   }
 
   appendNumber(number) {
-    const regExp = /./;
-    console.log(this.currentOperand); //doesn't include most recent entry;
+    let currentDisplay = document.querySelector("[data-current-operand]");
+    console.log(currentDisplay);
     /**
    *  if (number === "." && ) {
       return;
