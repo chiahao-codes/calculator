@@ -155,7 +155,7 @@ class Calculator {
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
-const operationButtons = document.querySelectorAll("[data-operation]"); //NodeList returned;
+const operationButtons = document.querySelectorAll("body > .calculator_grid > button.operation"); //NodeList returned;
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
 const allClearButton = document.querySelector("[data-all-clear]");
