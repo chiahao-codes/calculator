@@ -37,18 +37,19 @@ class Calculator {
   }
 
   appendNumber(number) {
-    if (localStorage.getItem("initialZero") === "true") {
-      //if starting with 0 in the current display;
-      localStorage.setItem("initialZero", "false");
-      localStorage.removeItem("current");
-      this.currentOperandTextElement.innerText = "";
-    }
-    let currentLS = localStorage.getItem("current");
-    currentLS += number.toString();
-    localStorage.setItem("current", currentLS); // resets/sets new current number;
-    this.currentOperand = localStorage.getItem("current");
 
-    return this.currentOperand;
+    //remove initial zero;
+    if (localStorage.getItem("initialZero") === "true") {
+      localStorage.setItem("initialZero", "false");
+      localStorage.setItem("current", number.toString());
+    } else {
+      //add input to current local storage;
+      let currentLS = localStorage.getItem("current");
+      currentLS += number.toString();
+      localStorage.setItem("current", currentLS); // resets/sets new current number;
+    }
+
+    return localStorage.getItem("current");
   }
 
   chooseOperation(operation) {
@@ -119,20 +120,9 @@ class Calculator {
   }
 
   //updates the display screen;
-  updateDisplay(numbStr = "") {
-    let initialZeroLS = localStorage.getItem("initialZero");
+  updateDisplay(numbStr) {
 
-    if (initialZeroLS === "false") {
-      this.currentOperandTextElement.innerText += `${localStorage.getItem(
-        "current"
-      )}`;
-    }
-
-    if (initialZeroLS === "true") {
-      localStorage.setItem("current", "0");
-      this.currentOperandTextElement.innerText =
-        localStorage.getItem("current");
-    }
+    this.currentOperandTextElement.innerText += numbStr;
 
     if (localStorage.getItem("previous")) {
       this.previousOperandTextElement.innerText = `${localStorage.getItem(
@@ -141,6 +131,7 @@ class Calculator {
     } else {
       this.previousOperandTextElement.innerText = "";
     }
+    
     return;
   }
 }
