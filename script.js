@@ -118,13 +118,24 @@ class Calculator {
     let curr = localStorage.getItem("current");
     console.log(curr, typeof curr);
 
-    //remove consecutive initial zeros;
+    //remove initial zero;
+    if (
+      (localStorage.getItem("initialZero") && curr[0] === "0") ||
+      (curr[0] === "0" && curr[1] === "0")
+    ) {
+      localStorage.setItem("initialZero", "false");
+      curr = curr.slice(0, 1);
+    }
+
+    /**
+     * //remove consecutive initial zeros;
     if (curr.length > 1) {
       if (curr[0] === "0" && curr[1] === "0") {
         curr = "0";
       }
     }
-    
+     */
+
     //if more than one decimal, remove previous decimal from curr;
     let decimalsArray = curr.match(regExp);
     if (decimalsArray) {
@@ -132,9 +143,8 @@ class Calculator {
         curr = curr.slice(0, -1);
       }
     }
-    
-    localStorage.setItem("current", curr);
 
+    localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     if (localStorage.getItem("previous")) {
