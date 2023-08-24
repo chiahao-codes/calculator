@@ -122,9 +122,10 @@ class Calculator {
   updateDisplay() {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
-
+    console.log(curr, typeof curr);
     //if more than one decimal, remove previous decimal from curr;
     let decimalsArray = curr.match(regExp);
+    console.log(decimalsArray);
     if (decimalsArray.length > 1) {
      curr = curr.slice(0, -1);
     }
