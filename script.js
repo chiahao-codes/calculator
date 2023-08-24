@@ -126,14 +126,15 @@ class Calculator {
     //if more than one decimal, remove previous decimal from curr;
     let decimalsArray = curr.match(regExp);
     console.log(decimalsArray);
-    
+
     if (decimalsArray) {
       if (decimalsArray.length > 1) {
         curr = curr.slice(0, -1);
+        localStorage.setItem("current", curr);
       }
     }
 
-    this.currentOperandTextElement.innerText = curr;
+    this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     if (localStorage.getItem("previous")) {
       this.previousOperandTextElement.innerText = `${localStorage.getItem(
@@ -142,8 +143,6 @@ class Calculator {
     } else {
       this.previousOperandTextElement.innerText = "";
     }
-
-    return;
   }
 }
 
