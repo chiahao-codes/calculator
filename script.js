@@ -37,16 +37,10 @@ class Calculator {
   }
 
   appendNumber(number) {
-    //remove initial zero;
-    if (localStorage.getItem("initialZero") === "true") {
-      localStorage.setItem("initialZero", "false");
-      localStorage.setItem("current", number.toString());
-    } else {
       //add input to current local storage;
       let currentLS = localStorage.getItem("current");
       currentLS += number.toString();
       localStorage.setItem("current", currentLS); // resets/sets new current number;
-    }
 
     return;
   }
@@ -123,16 +117,23 @@ class Calculator {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
     console.log(curr, typeof curr);
+
+    //remove consecutive initial zeros;
+    if (curr.length > 1) {
+      if (curr[0] === "0" && curr[1] === "0") {
+        curr = "0";
+      }
+    }
+    
     //if more than one decimal, remove previous decimal from curr;
     let decimalsArray = curr.match(regExp);
-    console.log(decimalsArray);
-
     if (decimalsArray) {
       if (decimalsArray.length > 1) {
         curr = curr.slice(0, -1);
-        localStorage.setItem("current", curr);
       }
     }
+    
+    localStorage.setItem("current", curr);
 
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
@@ -173,7 +174,8 @@ numberButtons.forEach((button) => {
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (!currentOperandTextElement.innerText) {
+    console.log("operations buttons listener running...")
+    if (currentOperandTextElement.innerText === "") {
       return;
     }
     calculator.chooseOperation(button.innerText);
