@@ -2,6 +2,7 @@ window.addEventListener("load", (e) => {
   console.log("Loaded...");
   localStorage.setItem("initialZero", "true");
   localStorage.setItem("current", "0");
+  localStorage.setItem("onDisplay", localStorage.getItem("current"));
   calculator.updateDisplay();
 });
 
@@ -15,6 +16,7 @@ class Calculator {
     this.previousOperand = localStorage.getItem("previous");
     this.operation = localStorage.getItem("operation");
     this.calculated = localStorage.getItem("calculated");
+    this.onDisplay = localStorage.getItem("onDisplay");
   }
   clear() {
     this.currentOperand = "";
@@ -37,9 +39,7 @@ class Calculator {
   }
 
   appendNumber(number) {
-    let currentDisplay = document.querySelector("[data-current-operand]");
-    console.log(currentDisplay.innerText);
-   if (number === "." && currentDisplay.innerText.includes(".")) {
+   if (number === "." && this.onDisplay.includes(".")) {
       return;
     }
 
@@ -51,6 +51,12 @@ class Calculator {
     }
 
     localStorage.setItem("current", number.toString()); // resets/sets new current number;
+
+    //update local storage display;
+    let display = localStorage.getItem("onDisplay");
+    display += localStorage.getItem("current");
+    localStorage.setItem("onDisplay", display);
+    
     this.currentOperand = localStorage.getItem("current");
 
     return this.currentOperand;
