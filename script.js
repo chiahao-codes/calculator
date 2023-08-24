@@ -138,7 +138,8 @@ class Calculator {
   updateDisplay(numbStr = "") {
     let initialZeroLS = localStorage.getItem("initialZero");
     if (initialZeroLS !== "true") {
-      this.currentOperandTextElement.innerText += `${numbStr}`
+      this.currentOperandTextElement.innerText = "";
+      this.currentOperandTextElement.innerText += `${numbStr}`;
     } else {
       this.currentOperandTextElement.innerText = "0";
     }
