@@ -45,6 +45,7 @@ class Calculator {
     if (localStorage.getItem("initialZero") === "true") {
       localStorage.setItem("initialZero", "false");
       localStorage.removeItem("current");
+      this.currentOperandTextElement.innerText = "";
     }
 
     localStorage.setItem("current", number.toString()); // resets/sets new current number;
@@ -119,18 +120,6 @@ class Calculator {
     
 
     return;
-  }
-
-  stillCalculating(latestEntry) {
-
-    //update display && keep track of calculation;
-    let latestEntryString = latestEntry.toString();
-    if (localStorage.getItem("previous") && localStorage.getItem("operation") && localStorage.getItem("calculated")) {
-      //calculate latest entry and store inside local storage:
-      
-
-      this.previousOperandTextElement.innerText =`${localStorage.getItem("previous")} ${this.operation} ${latestEntryString}`
-    }
   }
 
   //updates the display screen;
