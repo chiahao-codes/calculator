@@ -39,8 +39,9 @@ class Calculator {
   }
 
   appendNumber(number) {
-   if (number === "." && this.onDisplay.includes(".")) {
-      return;
+    console.log(this.onDisplay);
+   if (number === "." ) {
+      
     }
 
     //if starting with 0 in the current display;
@@ -56,7 +57,7 @@ class Calculator {
     let display = localStorage.getItem("onDisplay");
     display += localStorage.getItem("current");
     localStorage.setItem("onDisplay", display);
-    
+
     this.currentOperand = localStorage.getItem("current");
 
     return this.currentOperand;
