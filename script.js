@@ -120,7 +120,7 @@ class Calculator {
   }
 
   //updates the display screen;
-  updateDisplay(numbStr) {
+  updateDisplay(numbStr=localStorage.getItem("current")) {
 
     this.currentOperandTextElement.innerText += numbStr;
 
@@ -131,7 +131,7 @@ class Calculator {
     } else {
       this.previousOperandTextElement.innerText = "";
     }
-    
+
     return;
   }
 }
