@@ -180,7 +180,7 @@ numberButtons.forEach((button) => {
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    console.log("operations buttons listener running...")
+     console.log(button.innerText);
     if (currentOperandTextElement.innerText === "") {
       return;
     }
