@@ -128,9 +128,25 @@ class Calculator {
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
-    //run this only if operation button was pushed...
+    //Only if operation button was pushed...
     if (opsButton === "true") {
-      console.log(opsButton)
+      let prevArr = prev.split(" ");
+      console.log("previous:", prevArr);
+
+      let opsArr = operations.split(" ");
+      console.log("operations:", opsArr);
+
+      //iterate through previous and operations storage;
+      for (let i = 0; i < prevArr.length; i++) {
+        for (let j = 0; j < opsArr.length; j++) {
+          let pr = prevArr[i];
+          let ops = opsArr[j];
+          if (pr !== "" && ops !== "")
+            this.previousOperandTextElement.innerText += `${pr} ${ops}`;
+        }
+      }
+    } else {
+      this.previousOperandTextElement.innerText = "";
     }
 
     /**
