@@ -136,7 +136,7 @@ class Calculator {
         localStorage.getItem("prevOperandText");
     }
     
-    if (localStorage.getItem("initialZero")) {
+    if (localStorage.getItem("initialZero") === "true") {
       this.previousOperandTextElement.innerText = this.previousOperand;
     }
     
@@ -185,7 +185,7 @@ operationButtons.forEach((button) => {
     let regExpr = /[+/*-]/;
     if (regExpr.test(operationButton)) console.log("true");
 
-    
+
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
