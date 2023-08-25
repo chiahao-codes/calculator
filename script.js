@@ -1,7 +1,9 @@
 window.addEventListener("load", (e) => {
   console.log("Loaded...");
-  localStorage.setItem("initialZero", "true");
-  localStorage.setItem("current", "0");
+  if (localStorage.getItem("previous") == null) {
+    localStorage.setItem("initialZero", "true");
+    localStorage.setItem("current", "0");
+  }
   calculator.updateDisplay();
 });
 
