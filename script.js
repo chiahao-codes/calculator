@@ -2,10 +2,8 @@ window.addEventListener("load", (e) => {
   console.log("Loaded...");
   localStorage.setItem("initialZero", "true");
   localStorage.setItem("current", "0");
-  let prev = new Array();
-  let operation = new Array();
-  localStorage.setItem("previous", prev);
-  localStorage.setItem("operation", operation)
+  localStorage.setItem("previous", "");
+  localStorage.setItem("operation", "");
   calculator.updateDisplay();
 });
 
@@ -108,6 +106,12 @@ class Calculator {
     let prev = localStorage.getItem("previous");
     let operations = localStorage.getItem("operation");
 
+    //turn strings to array;
+    let prevArr = prev.split(" ");
+    let opsArr = operations.split(" ");
+    console.log("previous:",prevArr);
+    console.log("operations:",opsArr);
+
     //remove initial zero;
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
@@ -133,8 +137,8 @@ class Calculator {
 
     if (prev.length > 1) {
       //iterate through previous and operations storage;
-      for (let i = 0; i < prev.length; i++){
-        for (let j = 0; j < operations.length; j++){
+      for (let i = 0; i < prevArr.length; i++){
+        for (let j = 0; j < opsArr.length; j++){
           let pr = prev[i];
           let ops = operations[j];
           this.previousOperandTextElement.innerText += `${pr} ${ops}`
@@ -184,8 +188,9 @@ operationButtons.forEach((button) => {
     }
 
     //collect each "current" & operation button entry;
-    previousLS = previousLS.push(currentLS);
-    operationLS = operationLS.push(operationButton);
+    //build out strings in local storage;
+    previousLS += `${currentLS} `;
+    operationLS += `${operationButton} `;
     currentLS = "";
     localStorage.setItem("previous", previousLS);
     localStorage.setItem("current", currentLS);
