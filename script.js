@@ -2,6 +2,8 @@ window.addEventListener("load", (e) => {
   console.log("Loaded...");
   localStorage.setItem("initialZero", "true");
   localStorage.setItem("current", "0");
+  localStorage.setItem("previous", []);
+  localStorage.setItem("operation", [])
   calculator.updateDisplay();
 });
 
@@ -37,31 +39,14 @@ class Calculator {
   }
 
   appendNumber(number) {
-      //add input to current local storage;
-      let currentLS = localStorage.getItem("current");
-      currentLS += number.toString();
-      localStorage.setItem("current", currentLS); // resets/sets new current number;
+    //add input to current local storage;
+    let currentLS = localStorage.getItem("current");
+    currentLS += number.toString();
+    localStorage.setItem("current", currentLS); // resets/sets new current number;
 
     return;
   }
-
-  chooseOperation(operation) {
-    if (this.currentOperand === "") {
-      return;
-    }
-    if (this.previousOperand !== "") {
-      console.log("previousOperand", this.previousOperand)
-      this.compute();
-    }
-    console.log("operation chosen:", operation);
-    this.operation = operation;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
-
-    localStorage.setItem("previous", this.previousOperand);
-    localStorage.setItem("current", this.currentOperand);
-    localStorage.setItem("operation", this.operation);
-  }
+  
 
   //compute the mathematical expressions and display on screen;
   compute() {
@@ -118,7 +103,8 @@ class Calculator {
   updateDisplay() {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
-    console.log(curr, typeof curr);
+    let prev = localStorage.getItem("previous");
+    let operations = localStorage.getItem("operation");
 
     //remove initial zero;
     if (curr.length > 1) {
@@ -143,10 +129,15 @@ class Calculator {
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
-    if (localStorage.getItem("previous")) {
-      this.previousOperandTextElement.innerText = `${localStorage.getItem(
-        "previous"
-      )} ${this.operation}`;
+    if (prev.length > 1) {
+      //iterate through previous and operations storage;
+      for (let i = 0; i < prev.length; i++){
+        for (let j = 0; j < operations.length; j++){
+          let pr = prev[i];
+          let ops = operations[j];
+          this.previousOperandTextElement.innerText += `${pr} ${ops}`
+        }
+      }
     } else {
       this.previousOperandTextElement.innerText = "";
     }
@@ -155,6 +146,7 @@ class Calculator {
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
+//css specificity needed for more consistent performance;
 const operationButtons = document.querySelectorAll("body > .calculator_grid > button.operation"); //NodeList returned;
 const equalsButton = document.querySelector("[data-equals]");
 const deleteButton = document.querySelector("[data-delete]");
@@ -173,18 +165,30 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    let currNumberEntry = calculator.appendNumber(button.innerText);
-    calculator.updateDisplay(currNumberEntry);
+    calculator.appendNumber(button.innerText);
+    calculator.updateDisplay();
   });
 });
 
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
-     console.log(button.innerText);
-    if (currentOperandTextElement.innerText === "") {
+    let currentLS = localStorage.getItem("current");
+    let previousLS = localStorage.getItem("previous");
+    let operationLS = localStorage.getItem("operation");
+    let operationButton = button.innerText;
+
+    if (currentLS === "") {
       return;
     }
-    calculator.chooseOperation(button.innerText);
+
+    //collect each "current" & operation button entry;
+    previousLS = previousLS.push(currentLS);
+    operationLS = operationLS.push(operationButton);
+    currentLS = "";
+    localStorage.setItem("previous", previousLS);
+    localStorage.setItem("current", currentLS);
+    localStorage.setItem("operation", operationLS);
+
     calculator.updateDisplay();
   });
 });
@@ -203,3 +207,23 @@ deleteButton.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
 });
+
+
+/**
+    chooseOperation(operation) {
+    if (this.currentOperand === "") {
+      return;
+    }
+    if (this.previousOperand !== "") {
+      this.compute();
+    }
+    
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = "";
+
+    localStorage.setItem("previous", this.previousOperand);
+    localStorage.setItem("current", this.currentOperand);
+    localStorage.setItem("operation", this.operation);
+  }
+ */
