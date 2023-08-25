@@ -105,11 +105,16 @@ class Calculator {
     let operations = localStorage.getItem("operation");
 
     //turn strings to array;
-    let prevArr = prev.split(" ");
-    let opsArr = operations.split(" ");
-    console.log("previous:",prevArr);
-    console.log("operations:",opsArr);
+    if (prev !== null) {
+      let prevArr = prev.split(" ");
+      console.log("previous:", prevArr);
+    }
 
+    if (operations !== null) {
+      let opsArr = operations.split(" ");
+      console.log("operations:", opsArr);
+    }
+   
     //remove initial zero;
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
@@ -133,7 +138,7 @@ class Calculator {
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
-    if (prev.length > 1) {
+    if (prevArr.length > 1) {
       //iterate through previous and operations storage;
       for (let i = 0; i < prevArr.length; i++){
         for (let j = 0; j < opsArr.length; j++){
