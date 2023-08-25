@@ -129,7 +129,7 @@ class Calculator {
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     //run this only if operation button was pushed...
-    if (opsButton === "true" && curr) {
+    if (opsButton === "true") {
       console.log(opsButton)
     }
 
