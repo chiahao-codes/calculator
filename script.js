@@ -130,7 +130,13 @@ class Calculator {
 
     //Only if operation button was pushed...
     if (opsButton === "true") {
-      let prevArr = prev.split(" ");
+      //update previousOperandText display
+      this.previousOperandTextElement.innerText =
+        localStorage.getItem("prevOperandText");
+    }
+
+    /**
+     * let prevArr = prev.split(" ");
       console.log("previous:", prevArr);
 
       let opsArr = operations.split(" ");
@@ -142,36 +148,15 @@ class Calculator {
           let pr = prevArr[i];
           let ops = opsArr[j];
           if (pr !== "" && ops !== "") this.previousOperandTextElement.innerText += `${pr} ${ops}`;
-          localStorage.setItem("prevOperandText", this.previousOperandTextElement.innerText);
+      
         }
       }
-    } else {
+
+      else {
       let prevOperandTextLS = localStorage.getItem("prevOperandText");
       if (prevOperandTextLS == null) prevOperandTextLS = "";
       this.previousOperandTextElement.innerText = prevOperandTextLS;
     }
-
-    /**
-     *   //turn strings to array;
-     * if (prev) {
-        let prevArr = prev.split(" ");
-        console.log("previous:", prevArr);
-
-        let opsArr = operations.split(" ");
-        console.log("operations:", opsArr);
-
-        //iterate through previous and operations storage;
-        for (let i = 0; i < prevArr.length; i++) {
-          for (let j = 0; j < opsArr.length; j++) {
-            let pr = prevArr[i];
-            let ops = opsArr[j];
-            if (pr !== "" && ops !== "")
-              this.previousOperandTextElement.innerText += `${pr} ${ops}`;
-          }
-        }
-      } else {
-        this.previousOperandTextElement.innerText = "";
-      }
      */
 
     return;
@@ -212,26 +197,32 @@ operationButtons.forEach((button) => {
     let currentLS = localStorage.getItem("current");
     let previousLS = localStorage.getItem("previous");
     let operationLS = localStorage.getItem("operation");
+    let previousOperandTextElementLS = localStorage.getItem("prevOperandText");
     let operationButton = button.innerText;
     
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
+    if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
+
     if (previousLS == null) {
       previousLS = `${currentLS} `;
     } else {
       previousLS += `${currentLS} `;
     }
-    
+    previousOperandTextElementLS += currentLS;
+
     if (operationLS == null) {
       operationLS = `${operationButton} `;
     } else {
       operationLS += `${operationButton} `;
     }
-    
+    previousOperandTextElementLS += operationButton;
+
     currentLS = "";
     localStorage.setItem("previous", previousLS);
     localStorage.setItem("current", currentLS);
     localStorage.setItem("operation", operationLS);
+    localStorage.setItem("prevOperandText", previousOperandTextElementLS);
     localStorage.setItem("operationButtonPushed", "true");
 
     calculator.updateDisplay();
@@ -255,20 +246,4 @@ deleteButton.addEventListener("click", () => {
 
 
 /**
-    chooseOperation(operation) {
-    if (this.currentOperand === "") {
-      return;
-    }
-    if (this.previousOperand !== "") {
-      this.compute();
-    }
-    
-    this.operation = operation;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
-
-    localStorage.setItem("previous", this.previousOperand);
-    localStorage.setItem("current", this.currentOperand);
-    localStorage.setItem("operation", this.operation);
-  }
  */
