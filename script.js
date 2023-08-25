@@ -191,10 +191,10 @@ operationButtons.forEach((button) => {
     let previousLS = localStorage.getItem("previous");
     let operationLS = localStorage.getItem("operation");
     let operationButton = button.innerText;
-
-    if (currentLS === "") {
-      return;
-    }
+    
+    /**
+     * 
+     */
 
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
