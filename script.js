@@ -183,8 +183,13 @@ operationButtons.forEach((button) => {
     let operationButton = button.innerText;
     
     let regExpr = /[+/*-]/;
-    if (regExpr.test(operationButton)) console.log("true");
-
+    if (previousOperandTextElementLS !== null) {
+      let prevChar = previousOperandTextElementLS.charAt(previousOperandTextElementLS.length - 1);
+       if (regExpr.test(prevChar)) {
+         alert("Invalid Entry");
+         return;
+       }
+    }
 
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
@@ -233,36 +238,5 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
-   * let regExpr = /[+/*-]/
-    //get the previous operation button;
-    if (operationLS !== null) {
-      let priorOperationButton = operationLS.charAt(operationLS.length - 1);
-      if (regExpr.test(priorOperationButton)) {
-        alert("Invalid entry");
-        return;
-      }
-    }
-     *  let prev = localStorage.getItem("previous");
-    let operations = localStorage.getItem("operation");
-     * let prevArr = prev.split(" ");
-      console.log("previous:", prevArr);
-
-      let opsArr = operations.split(" ");
-      console.log("operations:", opsArr);
-
-      //iterate through previous and operations storage;
-      for (let i = 0; i < prevArr.length; i++) {
-        for (let j = 0; j < opsArr.length; j++) {
-          let pr = prevArr[i];
-          let ops = opsArr[j];
-          if (pr !== "" && ops !== "") this.previousOperandTextElement.innerText += `${pr} ${ops}`;
-      
-        }
-      }
-
-      else {
-      let prevOperandTextLS = localStorage.getItem("prevOperandText");
-      if (prevOperandTextLS == null) prevOperandTextLS = "";
-      this.previousOperandTextElement.innerText = prevOperandTextLS;
-    }
+   *
      */
