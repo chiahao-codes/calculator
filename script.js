@@ -125,14 +125,17 @@ class Calculator {
       }
     }
 
-
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     //run this only if operation button was pushed...
     if (opsButton === "true" && curr) {
-      //turn strings to array;
-      if (prev) {
+      console.log(opsButton)
+    }
+
+    /**
+     *   //turn strings to array;
+     * if (prev) {
         let prevArr = prev.split(" ");
         console.log("previous:", prevArr);
 
@@ -151,8 +154,8 @@ class Calculator {
       } else {
         this.previousOperandTextElement.innerText = "";
       }
-    }
-     
+     */
+
     return;
   }
 }
