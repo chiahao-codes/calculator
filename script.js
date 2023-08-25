@@ -103,6 +103,7 @@ class Calculator {
     let curr = localStorage.getItem("current");
     let prev = localStorage.getItem("previous");
     let operations = localStorage.getItem("operation");
+    let opsButton = localStorage.getItem("operationButtonPushed");
 
     //remove initial zero;
     if (curr.length > 1) {
@@ -123,13 +124,13 @@ class Calculator {
         curr = curr.slice(0, -1);
       }
     }
+
+
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
-    //if curr is empty "";
-    if (curr == "") {
-      return;
-    } else {
+    //run this only if operation button was pushed...
+    if (opsButton === "true" && curr.length > 0) {
       //turn strings to array;
       if (prev) {
         let prevArr = prev.split(" ");
@@ -151,8 +152,7 @@ class Calculator {
         this.previousOperandTextElement.innerText = "";
       }
     }
-  
-
+     
     return;
   }
 }
@@ -180,6 +180,7 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    localStorage.setItem("operationButtonPushed", "false");
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   });
@@ -192,10 +193,6 @@ operationButtons.forEach((button) => {
     let operationLS = localStorage.getItem("operation");
     let operationButton = button.innerText;
     
-    /**
-     * 
-     */
-
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
     if (previousLS == null) {
@@ -214,6 +211,7 @@ operationButtons.forEach((button) => {
     localStorage.setItem("previous", previousLS);
     localStorage.setItem("current", currentLS);
     localStorage.setItem("operation", operationLS);
+    localStorage.setItem("operationButtonPushed", "true");
 
     calculator.updateDisplay();
   });
