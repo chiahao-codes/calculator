@@ -141,7 +141,7 @@ class Calculator {
           let pr = prevArr[i];
           let ops = opsArr[j];
           if(pr !== "" && ops !== "")
-          this.previousOperandTextElement.innerText = `${pr} ${ops}`;
+          this.previousOperandTextElement.innerText += `${pr} ${ops}`;
         }
       }
     } else {
