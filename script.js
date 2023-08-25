@@ -104,17 +104,6 @@ class Calculator {
     let prev = localStorage.getItem("previous");
     let operations = localStorage.getItem("operation");
 
-    //turn strings to array;
-    if (prev !== null) {
-      let prevArr = prev.split(" ");
-      console.log("previous:", prevArr);
-    }
-
-    if (operations !== null) {
-      let opsArr = operations.split(" ");
-      console.log("operations:", opsArr);
-    }
-   
     //remove initial zero;
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
@@ -138,13 +127,20 @@ class Calculator {
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
-    if (prevArr.length > 1) {
+    //turn strings to array;
+    if (prev) {
+      let prevArr = prev.split(" ");
+      console.log("previous:", prevArr);
+
+       let opsArr = operations.split(" ");
+       console.log("operations:", opsArr);
+
       //iterate through previous and operations storage;
-      for (let i = 0; i < prevArr.length; i++){
-        for (let j = 0; j < opsArr.length; j++){
+      for (let i = 0; i < prevArr.length; i++) {
+        for (let j = 0; j < opsArr.length; j++) {
           let pr = prevArr[i];
           let ops = opsArr[j];
-          this.previousOperandTextElement.innerText = `${pr} ${ops}`
+          this.previousOperandTextElement.innerText = `${pr} ${ops}`;
         }
       }
     } else {
