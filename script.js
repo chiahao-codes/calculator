@@ -124,31 +124,37 @@ class Calculator {
       }
     }
 
+    //only update previousOperand if current already has an entry;
+    if (curr !== "") {
+      //turn strings to array;
+      if (prev) {
+        let prevArr = prev.split(" ");
+        console.log("previous:", prevArr);
+
+        let opsArr = operations.split(" ");
+        console.log("operations:", opsArr);
+
+        //iterate through previous and operations storage;
+        for (let i = 0; i < prevArr.length; i++) {
+          for (let j = 0; j < opsArr.length; j++) {
+            let pr = prevArr[i];
+            let ops = opsArr[j];
+            if (pr !== "" && ops !== "")
+              this.previousOperandTextElement.innerText += `${pr} ${ops}`;
+          }
+        }
+      } else {
+        this.previousOperandTextElement.innerText = "";
+      }
+    }
+    
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
-
-    //turn strings to array;
-    if (prev) {
-      let prevArr = prev.split(" ");
-      console.log("previous:", prevArr);
-
-       let opsArr = operations.split(" ");
-       console.log("operations:", opsArr);
-
-      //iterate through previous and operations storage;
-      for (let i = 0; i < prevArr.length; i++) {
-        for (let j = 0; j < opsArr.length; j++) {
-          let pr = prevArr[i];
-          let ops = opsArr[j];
-          if(pr !== "" && ops !== "")
-          this.previousOperandTextElement.innerText += `${pr} ${ops}`;
-        }
-      }
-    } else {
-      this.previousOperandTextElement.innerText = "";
-    }
+    return 
   }
 }
+
+
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
