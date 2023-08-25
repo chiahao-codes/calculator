@@ -130,7 +130,7 @@ class Calculator {
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     //run this only if operation button was pushed...
-    if (opsButton === "true" && curr.length > 0) {
+    if (opsButton === "true" && curr) {
       //turn strings to array;
       if (prev) {
         let prevArr = prev.split(" ");
