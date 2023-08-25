@@ -124,8 +124,6 @@ class Calculator {
       }
     }
 
-    //only update previousOperand if current already has an entry;
-    if (curr !== "") {
       //turn strings to array;
       if (prev) {
         let prevArr = prev.split(" ");
@@ -146,7 +144,7 @@ class Calculator {
       } else {
         this.previousOperandTextElement.innerText = "";
       }
-    }
+    
     
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
