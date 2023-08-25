@@ -139,8 +139,8 @@ class Calculator {
       //iterate through previous and operations storage;
       for (let i = 0; i < prevArr.length; i++){
         for (let j = 0; j < opsArr.length; j++){
-          let pr = prev[i];
-          let ops = operations[j];
+          let pr = prevArr[i];
+          let ops = opsArr[j];
           this.previousOperandTextElement.innerText += `${pr} ${ops}`
         }
       }
