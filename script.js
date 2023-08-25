@@ -25,6 +25,7 @@ class Calculator {
     localStorage.clear();
     localStorage.setItem("initialZero", "true");
     localStorage.setItem("current", "0");
+    localStorage.removeItem("previous");
     localStorage.setItem("calculated", "false");
   }
 
@@ -103,8 +104,6 @@ class Calculator {
   updateDisplay() {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
-    let prev = localStorage.getItem("previous");
-    let operations = localStorage.getItem("operation");
     let opsButton = localStorage.getItem("operationButtonPushed");
 
     //remove initial zero;
@@ -136,30 +135,11 @@ class Calculator {
       this.previousOperandTextElement.innerText =
         localStorage.getItem("prevOperandText");
     }
-
-    /**
-     * let prevArr = prev.split(" ");
-      console.log("previous:", prevArr);
-
-      let opsArr = operations.split(" ");
-      console.log("operations:", opsArr);
-
-      //iterate through previous and operations storage;
-      for (let i = 0; i < prevArr.length; i++) {
-        for (let j = 0; j < opsArr.length; j++) {
-          let pr = prevArr[i];
-          let ops = opsArr[j];
-          if (pr !== "" && ops !== "") this.previousOperandTextElement.innerText += `${pr} ${ops}`;
-      
-        }
-      }
-
-      else {
-      let prevOperandTextLS = localStorage.getItem("prevOperandText");
-      if (prevOperandTextLS == null) prevOperandTextLS = "";
-      this.previousOperandTextElement.innerText = prevOperandTextLS;
+    
+    if (localStorage.getItem("initialZero")) {
+      this.previousOperandTextElement.innerText = this.previousOperand;
     }
-     */
+    
 
     return;
   }
@@ -202,6 +182,14 @@ operationButtons.forEach((button) => {
     let previousOperandTextElementLS = localStorage.getItem("prevOperandText");
     let operationButton = button.innerText;
     
+    let regExpr = /[+/*-]/
+    //get the previous operation button;
+    let priorOperationButton = operationLS.charAt(operationLS.length - 1);
+    if (regExpr.test(priorOperationButton)) {
+      alert("Invalid entry");
+      return
+    }
+
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
@@ -249,3 +237,29 @@ deleteButton.addEventListener("click", () => {
 
 /**
  */
+
+  /**
+     *  let prev = localStorage.getItem("previous");
+    let operations = localStorage.getItem("operation");
+     * let prevArr = prev.split(" ");
+      console.log("previous:", prevArr);
+
+      let opsArr = operations.split(" ");
+      console.log("operations:", opsArr);
+
+      //iterate through previous and operations storage;
+      for (let i = 0; i < prevArr.length; i++) {
+        for (let j = 0; j < opsArr.length; j++) {
+          let pr = prevArr[i];
+          let ops = opsArr[j];
+          if (pr !== "" && ops !== "") this.previousOperandTextElement.innerText += `${pr} ${ops}`;
+      
+        }
+      }
+
+      else {
+      let prevOperandTextLS = localStorage.getItem("prevOperandText");
+      if (prevOperandTextLS == null) prevOperandTextLS = "";
+      this.previousOperandTextElement.innerText = prevOperandTextLS;
+    }
+     */
