@@ -147,7 +147,7 @@ class Calculator {
       }
     } else {
       let prevOperandTextLS = localStorage.getItem("prevOperandText");
-      if (prevOperandTextLS === null) prevOperandTextLS = "";
+      if (prevOperandTextLS == null) prevOperandTextLS = "";
       this.previousOperandTextElement.innerText = prevOperandTextLS;
     }
 
