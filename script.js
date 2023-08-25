@@ -135,7 +135,7 @@ class Calculator {
       this.previousOperandTextElement.innerText =
         localStorage.getItem("prevOperandText");
     }
-
+    
     if (localStorage.getItem("initialZero")) {
       this.previousOperandTextElement.innerText = this.previousOperand;
     }
@@ -184,14 +184,15 @@ operationButtons.forEach((button) => {
     
     let regExpr = /[+/*-]/
     //get the previous operation button;
-    if (operationLS) {
-       let priorOperationButton = operationLS.charAt(operationLS.length - 1);
-       if (regExpr.test(priorOperationButton)) {
-         alert("Invalid entry");
-         return;
-       }
+    if (operationLS !== null) {
+      let priorOperationButton = operationLS.charAt(operationLS.length - 1);
+      if (regExpr.test(priorOperationButton)) {
+        alert("Invalid entry");
+        return;
+      }
     }
-   
+    
+    
 
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
