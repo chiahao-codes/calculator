@@ -123,7 +123,13 @@ class Calculator {
         curr = curr.slice(0, -1);
       }
     }
+    localStorage.setItem("current", curr);
+    this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
+    //if curr is empty "";
+    if (curr == "") {
+      return;
+    } else {
       //turn strings to array;
       if (prev) {
         let prevArr = prev.split(" ");
@@ -144,11 +150,10 @@ class Calculator {
       } else {
         this.previousOperandTextElement.innerText = "";
       }
-    
-    
-    localStorage.setItem("current", curr);
-    this.currentOperandTextElement.innerText = localStorage.getItem("current");
-    return 
+    }
+  
+
+    return;
   }
 }
 
