@@ -182,16 +182,10 @@ operationButtons.forEach((button) => {
     let previousOperandTextElementLS = localStorage.getItem("prevOperandText");
     let operationButton = button.innerText;
 
-    /**
-     * let regExpr = /[+/*-]/;
-    if (previousOperandTextElementLS !== null) {
-      let prevChar = previousOperandTextElementLS.charAt(previousOperandTextElementLS.length - 1);
-       if (regExpr.test(prevChar)) {
-         alert("Invalid Entry");
-         return;
-       }
+    if (currentLS == null || currentLS == "") {
+      alert("Invalid entry");
+      return
     }
-     */
 
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
