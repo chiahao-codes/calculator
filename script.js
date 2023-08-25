@@ -141,12 +141,14 @@ class Calculator {
         for (let j = 0; j < opsArr.length; j++) {
           let pr = prevArr[i];
           let ops = opsArr[j];
-          if (pr !== "" && ops !== "")
-            this.previousOperandTextElement.innerText += `${pr} ${ops}`;
+          if (pr !== "" && ops !== "")this.previousOperandTextElement.innerText += `${pr} ${ops}`;
+          localStorage.setItem("prevOperandText", this.previousOperandTextElement);
         }
       }
     } else {
-      this.previousOperandTextElement.innerText = "";
+      let prevOperandTextLS = localStorage.getItem("prevOperandText");
+      if (prevOperandTextLS === null) prevOperandTextLS = "";
+      this.previousOperandTextElement.innerText = prevOperandTextLS;
     }
 
     /**
