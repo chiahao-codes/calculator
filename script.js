@@ -2,8 +2,6 @@ window.addEventListener("load", (e) => {
   console.log("Loaded...");
   localStorage.setItem("initialZero", "true");
   localStorage.setItem("current", "0");
-  localStorage.setItem("previous", "");
-  localStorage.setItem("operation", "");
   calculator.updateDisplay();
 });
 
@@ -141,7 +139,7 @@ class Calculator {
         for (let j = 0; j < opsArr.length; j++){
           let pr = prevArr[i];
           let ops = opsArr[j];
-          this.previousOperandTextElement.innerText += `${pr} ${ops}`
+          this.previousOperandTextElement.innerText = `${pr} ${ops}`
         }
       }
     } else {
@@ -188,9 +186,19 @@ operationButtons.forEach((button) => {
     }
 
     //collect each "current" & operation button entry;
-    //build out strings in local storage;
-    previousLS += `${currentLS} `;
-    operationLS += `${operationButton} `;
+    //build out strings in local storage;+
+    if (previousLS == null) {
+      previousLS = `${currentLS} `;
+    } else {
+      previousLS += `${currentLS} `;
+    }
+    
+    if (operationLS == null) {
+      operationLS = `${operationButton} `;
+    } else {
+      operationLS += `${operationButton} `;
+    }
+    
     currentLS = "";
     localStorage.setItem("previous", previousLS);
     localStorage.setItem("current", currentLS);
