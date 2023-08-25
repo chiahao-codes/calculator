@@ -210,6 +210,7 @@ operationButtons.forEach((button) => {
     localStorage.setItem("operation", operationLS);
     localStorage.setItem("prevOperandText", previousOperandTextElementLS);
     localStorage.setItem("operationButtonPushed", "true");
+    localStorage.setItem("initialZero", "false");
 
     calculator.updateDisplay();
   });
