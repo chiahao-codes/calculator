@@ -48,56 +48,64 @@ class Calculator {
     return;
   }
   
-
   //compute the mathematical expressions and display on screen;
   compute() {
-    let currLocal, prevLocal, prev, current, computation;
+
+    let currLocal, prevOperandText, toBeComputed, operator,op1, op2;
 
     currLocal = localStorage.getItem("current");
-    prevLocal = localStorage.getItem("previous");
+    prevOperandText = localStorage.getItem("prevOperandText");
 
-    //convert strings to numbers;
-    prev = parseFloat(prevLocal);
-    current = parseFloat(currLocal);
+    toBeComputed = `${prevOperandText}${currLocal}`;
+    console.log("toBeComputed:",toBeComputed);
 
-    //checks if there is a number to compute inside previous or current operand;
-    if (isNaN(prev) || isNaN(current)) {
-      return;
+    for (let i = 0; i < toBeComputed.length; i+2){
+      op1 = localStorage.getItem("computation");
+      operator = toBeComputed[i + 1];
+      op2 = toBeComputed[i + 2];
+      if (op1 === null) {
+        op1 = toBeComputed[i];
+      }
+
+      if (op2 == undefined) {
+        op2 = localStorage.getItem("current");
+      }
+
+      op1 = parseFloat(op1);
+      op2 = parseFloat(op2);
+      this.runCalculation(op1, operator, op2);
     }
 
+
+    return;
+  }
+
+  runCalculation(operand1, operation, operand2) {
     //perform math computation based on the operation button selected;
-    switch (this.operation) {
+    let computation, currentComputationLS;
+    switch (operation) {
       case "+":
-        computation = prev + current;
+        computation = operand1 + operand2;
         break;
       case "-":
-        computation = prev - current;
+        computation = operand1 - operand2;
         break;
       case "*":
-        computation = prev * current;
+        computation = operand1 * operand2;
         break;
       case "/":
-        computation = prev / current;
+        computation = operand1 / operand2;
         break;
       default:
         return;
     }
 
-    //Note: Build a separate function for ongoing computation display;
+    currentComputationLS = localStorage.getItem("computation");
+    if (currentComputationLS == null) currentComputationLS = "";
+    currentComputationLS += computation.toString();
+    localStorage.setItem("computation", currentComputationLS);
 
-    this.currentOperand = computation; //number;
-    this.operation = undefined;
-    this.previousOperand = "";
-    this.calculated = "true";
-
-    let currNumToString = this.currentOperand.toString();
-
-    localStorage.setItem("current", currNumToString);
-    localStorage.setItem("previous", this.previousOperand);
-    localStorage.setItem("operation", this.operation);
-    localStorage.setItem("calculated", this.calculated);
-
-    return;
+    return
   }
 
   //updates the display screen;
@@ -105,6 +113,7 @@ class Calculator {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
     let opsButton = localStorage.getItem("operationButtonPushed");
+    let computed = localStorage.getItem("computation");
 
     //remove initial zero;
     if (curr.length > 1) {
@@ -126,20 +135,27 @@ class Calculator {
       }
     }
 
-    localStorage.setItem("current", curr);
-    this.currentOperandTextElement.innerText = localStorage.getItem("current");
-
     //Only if operation button was pushed...
     if (opsButton === "true") {
       //update previousOperandText display
       this.previousOperandTextElement.innerText =
         localStorage.getItem("prevOperandText");
     }
-    
+
     if (localStorage.getItem("initialZero") === "true") {
-      this.previousOperandTextElement.innerText = this.previousOperand;
+      localStorage.setItem("previous", "")
+      this.previousOperandTextElement.innerText = localStorage.getItem("previous");
     }
-    
+
+    //update computation display if needed;
+    if (computed) {
+      curr = computed;
+      this.previousOperandTextElement = "";
+    }
+
+
+    localStorage.setItem("current", curr);
+    this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
     return;
   }
@@ -187,6 +203,11 @@ operationButtons.forEach((button) => {
       return
     }
 
+    let lastChar = currentLS.charAt(currentLS.length - 1);
+    if (lastChar === ".") {
+      currentLS = currentLS + "0";
+    }
+
     //collect each "current" & operation button entry;
     //build out strings in local storage;+
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
@@ -218,6 +239,18 @@ operationButtons.forEach((button) => {
 });
 
 equalsButton.addEventListener("click", () => {
+  let currLS = localStorage.getItem("current");
+  if (currLS === "" || currLS == null) {
+    return
+  }
+
+ let lastChar = currLS.charAt(currLS.length - 1);
+ if (lastChar === ".") {
+   currLS = currLS + "0";
+  }
+  
+  localStorage.setItem("current", currLS);
+  localStorage.setItem("operationButtonPushed", "false");
   calculator.compute();
   calculator.updateDisplay();
 });
@@ -234,5 +267,12 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
-   *
+   * //Note: Build a separate function for ongoing computation display;
+
+    this.currentOperand = computation; //number;
+    this.operation = undefined;
+    this.previousOperand = "";
+    this.calculated = "true";
+
+    let currNumToString = this.currentOperand.toString();
      */
