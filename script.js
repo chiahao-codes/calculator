@@ -2,8 +2,10 @@ window.addEventListener("load", (e) => {
   console.log("Loaded...");
   localStorage.setItem("initialZero", "true");
   localStorage.setItem("current", "0");
-  localStorage.setItem("previous", []);
-  localStorage.setItem("operation", [])
+  let prev = new Array();
+  let operation = new Array();
+  localStorage.setItem("previous", prev);
+  localStorage.setItem("operation", operation)
   calculator.updateDisplay();
 });
 
