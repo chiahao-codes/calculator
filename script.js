@@ -88,9 +88,7 @@ class Calculator {
     }
 
     localStorage.setItem("calculated", "true");
-    localStorage.removeItem("operation");
-    localStorage.removeItem("prevOperandText");
-    
+
     return 
   }
 
