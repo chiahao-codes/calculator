@@ -68,6 +68,10 @@ class Calculator {
         op1 = toBeComputed[i];
       }
 
+      if (operator == undefined) {
+        break;
+      }
+
       if (op2 == undefined) {
         op2 = localStorage.getItem("current");
       }
