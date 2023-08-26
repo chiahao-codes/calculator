@@ -69,6 +69,10 @@ class Calculator {
       operator = toBeComputed[i + 1];
       op2 = toBeComputed[i + 2];
 
+      console.log("op1:", op1);
+      console.log("operator:", operator);
+      console.log("op2:", op2);
+
       if (op1 === null) {
         op1 = toBeComputed[i];
       }
