@@ -254,7 +254,7 @@ equalsButton.addEventListener("click", () => {
   if (currLS === "" || currLS == null || prevLS === "") {
     return
   }
-
+console.log("equals pushed...")
  let lastChar = currLS.charAt(currLS.length - 1);
  if (lastChar === ".") {
    currLS = currLS + "0";
