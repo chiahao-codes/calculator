@@ -73,16 +73,22 @@ class Calculator {
 
       op1 = parseFloat(op1);
       op2 = parseFloat(op2);
-      this.runCalculation(op1, operator, op2);
+      
+      console.log("op1:", op1);
+      console.log("operator:", operator);
+      console.log("op2:", op2);
+
     }
 
-
-    return;
   }
 
   runCalculation(operand1, operation, operand2) {
     //perform math computation based on the operation button selected;
     let computation, currentComputationLS;
+
+    currentComputationLS = localStorage.getItem("computation");
+    if (currentComputationLS == null) currentComputationLS = "";
+
     switch (operation) {
       case "+":
         computation = operand1 + operand2;
@@ -100,8 +106,6 @@ class Calculator {
         return;
     }
 
-    currentComputationLS = localStorage.getItem("computation");
-    if (currentComputationLS == null) currentComputationLS = "";
     currentComputationLS += computation.toString();
     localStorage.setItem("computation", currentComputationLS);
 
