@@ -167,14 +167,17 @@ class Calculator {
 const numberButtons = document.querySelectorAll("[data-number]");
 //css specificity needed for more consistent performance;
 const operationButtons = document.querySelectorAll("body > .calculator_grid > button.operation"); //NodeList returned;
-const equalsButton = document.querySelector("[data-equals]");
-const deleteButton = document.querySelector("[data-delete]");
-const allClearButton = document.querySelector("[data-all-clear]");
+const equalsButton = document.querySelector("body > .calculator_grid > button.equals");
+const deleteButton = document.querySelector(
+  "body > .calculator_grid > button.delete"
+);
+const allClearButton = document.querySelector(
+  "body > .calculator_grid > button.all-clear");
 let previousOperandTextElement = document.querySelector(
-  "[data-previous-operand]"
+  "body > .calculator_grid > .output > .previous_operand"
 );
 let currentOperandTextElement = document.querySelector(
-  "[data-current-operand]"
+  "body > .calculator_grid > .output > .current_operand"
 );
 
 let calculator = new Calculator(
