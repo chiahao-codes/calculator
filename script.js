@@ -79,7 +79,7 @@ class Calculator {
 
       this.runCalculation(op1, operator, op2);
     }
-  
+
     return 
   }
 
@@ -151,7 +151,8 @@ class Calculator {
     //update computation display if needed;
     if (computed) {
       curr = computed;
-      this.previousOperandTextElement = "";
+      localStorage.setItem("previous", "");
+      this.previousOperandTextElement.innerText = localStorage.getItem("previous");
     }
 
 
