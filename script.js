@@ -270,12 +270,4 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
-   * //Note: Build a separate function for ongoing computation display;
-
-    this.currentOperand = computation; //number;
-    this.operation = undefined;
-    this.previousOperand = "";
-    this.calculated = "true";
-
-    let currNumToString = this.currentOperand.toString();
      */
