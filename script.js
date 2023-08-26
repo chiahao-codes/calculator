@@ -56,8 +56,6 @@ class Calculator {
     prevOperandText = localStorage.getItem("prevOperandText");
 
     toBeComputed = `${prevOperandText}${currLocal}`;
-    console.log("toBeComputed:", toBeComputed);
-    console.log("toBeComputedLength:", toBeComputed.length);
 
     for (let i = 0; i < toBeComputed.length; i+=2) {
       op1 = localStorage.getItem("computation");
@@ -76,23 +74,18 @@ class Calculator {
         op2 = localStorage.getItem("current");
       }
 
-      console.log("op1:", op1);
-      console.log("operator:", operator);
-      console.log("op2:", op2);
+      op1 = parseFloat(op1);
+      op2 = parseFloat(op2);
+
+      this.runCalculation(op1, operator, op2);
     }
 
-    /**
-     *   op1 = parseFloat(op1);
-      op2 = parseFloat(op2);
-     */
+    return 
   }
 
   runCalculation(operand1, operation, operand2) {
     //perform math computation based on the operation button selected;
-    let computation, currentComputationLS;
-
-    currentComputationLS = localStorage.getItem("computation");
-    if (currentComputationLS == null) currentComputationLS = "";
+    let computation = 0;
 
     switch (operation) {
       case "+":
@@ -110,9 +103,8 @@ class Calculator {
       default:
         return;
     }
-
-    currentComputationLS += computation.toString();
-    localStorage.setItem("computation", currentComputationLS);
+   
+    localStorage.setItem("computation", computation.toString());
 
     return
   }
