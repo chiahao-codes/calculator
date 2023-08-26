@@ -63,7 +63,7 @@ class Calculator {
 
     toBeComputed = `${prevOperandText}${currLocal}`;
     console.log("toBeComputed", toBeComputed);
-    
+
     for (let i = 0; i < toBeComputed.length; i+=2) {
       op1 = localStorage.getItem("computation");
       operator = toBeComputed[i + 1];
@@ -87,6 +87,10 @@ class Calculator {
       this.runCalculation(op1, operator, op2);
     }
 
+    localStorage.setItem("calculated", "true");
+    localStorage.removeItem("operation");
+    localStorage.removeItem("prevOperandText");
+    
     return 
   }
 
@@ -264,9 +268,7 @@ equalsButton.addEventListener("click", () => {
   
   localStorage.setItem("current", currLS);
   localStorage.setItem("operationButtonPushed", "false");
-  localStorage.setItem("calculated", "true");
-  localStorage.removeItem("operation");
-  localStorage.removeItem("prevOperandText");
+ 
   calculator.compute();
   calculator.updateDisplay();
 });
