@@ -50,19 +50,20 @@ class Calculator {
   
   //compute the mathematical expressions and display on screen;
   compute() {
-
-    let currLocal, prevOperandText, toBeComputed, operator,op1, op2;
+    let currLocal, prevOperandText, toBeComputed, operator, op1, op2;
 
     currLocal = localStorage.getItem("current");
     prevOperandText = localStorage.getItem("prevOperandText");
 
     toBeComputed = `${prevOperandText}${currLocal}`;
-    console.log("toBeComputed:",toBeComputed);
+    console.log("toBeComputed:", toBeComputed);
+    console.log("toBeComputedLength:", toBeComputed.length);
 
-    for (let i = 0; i < toBeComputed.length; i+2){
+    for (let i = 0; i < toBeComputed.length; i+=2) {
       op1 = localStorage.getItem("computation");
       operator = toBeComputed[i + 1];
       op2 = toBeComputed[i + 2];
+
       if (op1 === null) {
         op1 = toBeComputed[i];
       }
@@ -71,15 +72,15 @@ class Calculator {
         op2 = localStorage.getItem("current");
       }
 
-      op1 = parseFloat(op1);
-      op2 = parseFloat(op2);
-      
       console.log("op1:", op1);
       console.log("operator:", operator);
       console.log("op2:", op2);
-
     }
 
+    /**
+     *   op1 = parseFloat(op1);
+      op2 = parseFloat(op2);
+     */
   }
 
   runCalculation(operand1, operation, operand2) {
