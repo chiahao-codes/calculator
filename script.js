@@ -30,13 +30,19 @@ class Calculator {
   }
 
   delete() {
-    this.currentOperand = this.currentOperand.toString().slice(0, -1); //returns the string you want to keep;
-    localStorage.setItem("current", this.currentOperand);
-    if (!localStorage.getItem("current")) {
-      localStorage.clear();
-      localStorage.setItem("initialZero", "true");
-      localStorage.setItem("current", "0");
+    let currentLocalStorage = localStorage.getItem("current");
+    let previousLocalStorage = localStorage.getItem("previous");
+
+    if (currentLocalStorage && !previousLocalStorage) {
+      if (currentLocalStorage.length === 1) {
+        currentLocalStorage = "0";
+      } else {
+         currentLocalStorage = currentLocalStorage.slice(0, -1);
+        }
     }
+
+    localStorage.setItem("current", currentLocalStorage);
+
   }
 
   appendNumber(number) {
@@ -243,7 +249,9 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
-  if (currLS === "" || currLS == null) {
+  let prevLS = localStorage.getItem("previous");
+
+  if (currLS === "" || currLS == null || prevLS === "") {
     return
   }
 
@@ -254,6 +262,9 @@ equalsButton.addEventListener("click", () => {
   
   localStorage.setItem("current", currLS);
   localStorage.setItem("operationButtonPushed", "false");
+  localStorage.setItem("calculated", "true");
+  localStorage.removeItem("operation");
+  localStorage.removeItem("prevOperandText");
   calculator.compute();
   calculator.updateDisplay();
 });
@@ -270,4 +281,12 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
+   * 
+   * this.currentOperand = this.currentOperand.toString().slice(0, -1); //returns the string you want to keep;
+    localStorage.setItem("current", this.currentOperand);
+    if (!localStorage.getItem("current")) {
+      localStorage.clear();
+      localStorage.setItem("initialZero", "true");
+      localStorage.setItem("current", "0");
+    }
      */
