@@ -79,7 +79,7 @@ class Calculator {
 
       this.runCalculation(op1, operator, op2);
     }
-
+  
     return 
   }
 
@@ -161,8 +161,6 @@ class Calculator {
     return;
   }
 }
-
-
 
 //calculator app must run based on stored info in local storage;
 const numberButtons = document.querySelectorAll("[data-number]");
