@@ -62,7 +62,8 @@ class Calculator {
     prevOperandText = localStorage.getItem("prevOperandText");
 
     toBeComputed = `${prevOperandText}${currLocal}`;
-
+    console.log("toBeComputed", toBeComputed);
+    
     for (let i = 0; i < toBeComputed.length; i+=2) {
       op1 = localStorage.getItem("computation");
       operator = toBeComputed[i + 1];
@@ -251,10 +252,11 @@ equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
   let prevLS = localStorage.getItem("previous");
 
-  if (currLS === "" || currLS == null || prevLS === "") {
+  if (currLS == "" || prevLS == "") {
     return
   }
-console.log("equals pushed...")
+  console.log("equals pushed...");
+
  let lastChar = currLS.charAt(currLS.length - 1);
  if (lastChar === ".") {
    currLS = currLS + "0";
