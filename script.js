@@ -108,6 +108,7 @@ class Calculator {
       } else {
         //build operand;
         currOperand += char;
+        console.log("currOperand:",currOperand)
       }
     }
 
@@ -149,7 +150,7 @@ class Calculator {
     console.log("computation ran:", computation);
     localStorage.setItem("computation", computation.toString());
 
-    return
+    return 
   }
 
   //updates the display screen;
