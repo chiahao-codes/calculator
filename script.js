@@ -114,6 +114,10 @@ class Calculator {
           //prepare for computation:
           priorOperand = memo["priorOperand"];
           operator = memo["operator"];
+
+          currOperand = parseFloat(currOperand);
+          priorOperand = parseFloat(priorOperand);
+
           this.runCalculation(priorOperand, operator, currOperand);
           memo["priorOperand"] = localStorage.getItem("computation");
           currOperand = "";
