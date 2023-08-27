@@ -292,9 +292,9 @@ equalsButton.addEventListener("click", () => {
  let lastChar = currLS.charAt(currLS.length - 1);
  if (lastChar === ".") {
    currLS = currLS + "0";
+   localStorage.setItem("current", currLS);
   }
   
-  localStorage.setItem("current", currLS);
   localStorage.setItem("operationButtonPushed", "false");
  
   calculator.compute();
