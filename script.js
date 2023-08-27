@@ -75,7 +75,7 @@ class Calculator {
 
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-//2+3
+//2*3+1
       //if char is an operator
       if (regExp.test(char)) {
         //check & prepare variables for computing:
@@ -86,7 +86,7 @@ class Calculator {
           memo["priorOperand"] = currOperand;
           currOperand = "";
         } else {
-          //build up computation for longer math expression;
+          //bundle computation for longer math expression;
           //prepare for computation;
           if (localStorage.getItem("computation")) {
             priorOperand = localStorage.getItem("computation");
@@ -109,13 +109,13 @@ class Calculator {
         //build operand;
         currOperand += char;
         //run computation if needed;
-        /**
-         * if (memo["priorOperand"] && memo["operator"]) {
+        if (memo["priorOperand"] && memo["operator"]) {
           //prepare for computation:
-          priorOperand = memo["priorOperand"], operator = memo["operator"];
+          (priorOperand = memo["priorOperand"]), (operator = memo["operator"]);
           this.runCalculation(priorOperand, operator, currOperand);
+          memo["priorOperand"] = localStorage.getItem("computation");
+          currOperand = "";
         }
-         */
       }
     }
 
