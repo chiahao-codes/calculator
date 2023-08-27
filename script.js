@@ -103,6 +103,7 @@ class Calculator {
           memo["operator"] = char;
           memo["priorOperand"] = "";
           currOperand = "";
+          console.log("check...");
         }
       } else {
         //build operand;
@@ -111,10 +112,12 @@ class Calculator {
     }
 
     if (localStorage.getItem("current")) {
+
       currOperand = localStorage.getItem("current");
       priorOperand = localStorage.getItem("computation");
       operator = memo["operator"];
       this.runCalculation(priorOperand, operator, currOperand);
+      console.log("check 2");
     }
 
     localStorage.setItem("calculated", "true");
@@ -143,6 +146,7 @@ class Calculator {
         return;
     }
    
+    console.log("computation ran:", computation);
     localStorage.setItem("computation", computation.toString());
 
     return
