@@ -17,7 +17,14 @@ class Calculator {
     this.previousOperand = localStorage.getItem("previous");
     this.operation = localStorage.getItem("operation");
     this.calculated = localStorage.getItem("calculated");
+    this.opRegEx = /[+-*/]/;
   }
+
+  validateExpr(str) {
+    let result = this.opRegEx(str);
+    return result
+  }
+
   clear() {
     this.currentOperand = "";
     this.previousOperand = "";
@@ -56,7 +63,12 @@ class Calculator {
   
   //compute the mathematical expressions and display on screen;
   compute() {
-    let currLocal, prevOperandText, toBeComputed, operator, op1, op2;
+    let currLocal,
+      prevOperandText,
+      toBeComputed,
+      operator,
+      currOperand = "",
+      priorOperand = "";
 
     currLocal = localStorage.getItem("current");
     prevOperandText = localStorage.getItem("prevOperandText");
@@ -64,31 +76,45 @@ class Calculator {
     toBeComputed = `${prevOperandText}${currLocal}`;
     console.log("toBeComputed", toBeComputed);
 
-    for (let i = 0; i < toBeComputed.length; i+=2) {
-      op1 = localStorage.getItem("computation");
-      operator = toBeComputed[i + 1];
-      op2 = toBeComputed[i + 2];
+    let memo = {};
 
-      console.log("op1:", op1);
-      console.log("operator:", operator);
-      console.log("op2:", op2);
-
-      if (op1 === null) {
-        op1 = toBeComputed[i];
+    for (let i = 0; i < toBeComputed.length; i++) {
+      let char = toBeComputed[i];
+  
+    //if char is an operator
+      if (this.validateExpr(char)) {
+        //check & prepare variables for computing:
+        //if no calculation to be done:
+        if (!localStorage.getItem("computation") && !memo["priorOperand"]) {
+          //store operator and priorOperand;
+          memo["operator"] = operator;
+          memo["priorOperand"] = currOperand;
+       
+        } else {
+          //prepare for computation;
+          if (localStorage.getItem("computation")) {
+            priorOperand = localStorage.getItem("computation");
+          } else {
+            priorOperand = memo["priorOperand"];
+            operator = memo["operator"];
+          }
+            //run computation
+          this.runCalculation(priorOperand, operator, currOperand);
+          memo["operator"] = char;
+          memo["priorOperand"] = "";
+          currOperand = "";
+        }
+      } else {
+        //build operand;
+        currOperand += char;
       }
+    }
 
-      if (operator == undefined) {
-        break;
-      }
-
-      if (op2 == undefined) {
-        op2 = localStorage.getItem("current");
-      }
-
-      op1 = parseFloat(op1);
-      op2 = parseFloat(op2);
-
-      this.runCalculation(op1, operator, op2);
+    if (localStorage.getItem("current")) {
+      currOperand = localStorage.getItem("current");
+      priorOperand = localStorage.getItem("computation");
+      operator = memo["operator"];
+      this.runCalculation(priorOperand, operator, currOperand);
     }
 
     localStorage.setItem("calculated", "true");
@@ -162,7 +188,7 @@ class Calculator {
     }
 
     //update computation display if needed;
-    if (computed) {
+    if (computed && localStorage.getItem("calculated")) {
       curr = computed;
       localStorage.setItem("previous", "");
       this.previousOperandTextElement.innerText = localStorage.getItem("previous");
@@ -287,6 +313,36 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
+   * 
+   *   op1 = localStorage.getItem("computation");
+      operator = toBeComputed[i + 1];
+      op2 = toBeComputed[i + 2];
+
+      console.log("op1:", op1);
+      console.log("operator:", operator);
+      console.log("op2:", op2);
+
+
+      if (op1 === null) {
+        //op1 should accumulate digit strings up until an operator is found;
+        for (let j = i; j < toBeComputed.length; j++)
+        op1 = toBeComputed[i];
+      }
+
+      if (operator == undefined) {
+        break;
+      }
+
+      if (op2 == undefined) {
+        op2 = localStorage.getItem("current");
+      }
+
+      op1 = parseFloat(op1);
+      op2 = parseFloat(op2);
+
+      this.runCalculation(op1, operator, op2);
+   * 
+   * 
    * 
    * this.currentOperand = this.currentOperand.toString().slice(0, -1); //returns the string you want to keep;
     localStorage.setItem("current", this.currentOperand);
