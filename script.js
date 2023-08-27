@@ -62,7 +62,7 @@ class Calculator {
       operator,
       currOperand = "",
       priorOperand = "";
-    
+
     const regExp = /\+|-|\*|\//;
 
     currLocal = localStorage.getItem("current");
@@ -75,7 +75,7 @@ class Calculator {
 
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-//2*3+1
+      //2*3 +1
       //if char is an operator
       if (regExp.test(char)) {
         //check & prepare variables for computing:
@@ -111,7 +111,8 @@ class Calculator {
         //run computation if needed;
         if (memo["priorOperand"] && memo["operator"]) {
           //prepare for computation:
-          (priorOperand = memo["priorOperand"]), (operator = memo["operator"]);
+          priorOperand = memo["priorOperand"];
+          operator = memo["operator"];
           this.runCalculation(priorOperand, operator, currOperand);
           memo["priorOperand"] = localStorage.getItem("computation");
           currOperand = "";
@@ -119,7 +120,8 @@ class Calculator {
       }
     }
 
-    if (localStorage.getItem("current")) {
+    /**
+     *   if (localStorage.getItem("current")) {
       currOperand = localStorage.getItem("current");
       priorOperand = memo["priorOperand"];
       operator = memo["operator"];
@@ -129,6 +131,8 @@ class Calculator {
 
       this.runCalculation(priorOperand, operator, currOperand);
     }
+
+     */
 
     localStorage.setItem("calculated", "true");
 
