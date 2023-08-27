@@ -21,7 +21,7 @@ class Calculator {
   }
 
   validateExpr(str) {
-    let result = this.opRegEx(str);
+    let result = this.opRegEx.test(str);
     return result
   }
 
