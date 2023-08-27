@@ -75,7 +75,7 @@ class Calculator {
 
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-      //2*3 +1
+      //3*2 +5 +3
       //if char is an operator
       if (regExp.test(char)) {
         //check & prepare variables for computing:
@@ -90,18 +90,19 @@ class Calculator {
           //prepare for computation;
           if (localStorage.getItem("computation")) {
             priorOperand = localStorage.getItem("computation");
-            localStorage.removeItem("computation");
+            //localStorage.removeItem("computation");
           } else {
             priorOperand = memo["priorOperand"];
             operator = memo["operator"];
           }
+          currOperand = localStorage.getItem("current");
           //run computation
           priorOperand = parseFloat(priorOperand);
-          currOperand = parseFloat(currOperand);
+          currOperand = parseFloat(currOperand); 
 
           this.runCalculation(priorOperand, operator, currOperand);
           memo["operator"] = char;
-          memo["priorOperand"] = "";
+          memo["priorOperand"] = localStorage.getItem("computation");
           currOperand = "";
           console.log("check...");
         }
@@ -119,20 +120,6 @@ class Calculator {
         }
       }
     }
-
-    /**
-     *   if (localStorage.getItem("current")) {
-      currOperand = localStorage.getItem("current");
-      priorOperand = memo["priorOperand"];
-      operator = memo["operator"];
-
-      currOperand = parseFloat(currOperand);
-      priorOperand = parseFloat(priorOperand);
-
-      this.runCalculation(priorOperand, operator, currOperand);
-    }
-
-     */
 
     localStorage.setItem("calculated", "true");
 
@@ -328,6 +315,18 @@ deleteButton.addEventListener("click", () => {
   calculator.updateDisplay();
 });
 
+ /**
+     *   if (localStorage.getItem("current")) {
+      currOperand = localStorage.getItem("current");
+      priorOperand = memo["priorOperand"];
+      operator = memo["operator"];
 
+      currOperand = parseFloat(currOperand);
+      priorOperand = parseFloat(priorOperand);
+
+      this.runCalculation(priorOperand, operator, currOperand);
+    }
+
+     */
   /**
      */
