@@ -123,6 +123,8 @@ class Calculator {
       currOperand = parseFloat(currOperand);
       priorOperand = parseFloat(priorOperand);
       operator = parseFloat(operator);
+      console.log(currOperand, typeof currOperand);
+      console.log(priorOperand, typeof priorOperand);
       
       this.runCalculation(priorOperand, operator, currOperand);
       console.log("check 2");
