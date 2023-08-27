@@ -75,7 +75,7 @@ class Calculator {
 
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-      console.log("char:", char);
+
       //if char is an operator
       if (regExp.test(char)) {
         //check & prepare variables for computing:
@@ -94,6 +94,9 @@ class Calculator {
             operator = memo["operator"];
           }
           //run computation
+          priorOperand = parseFloat(priorOperand);
+          currOperand = parseFloat(currOperand);
+
           this.runCalculation(priorOperand, operator, currOperand);
           memo["operator"] = char;
           memo["priorOperand"] = "";
@@ -116,6 +119,11 @@ class Calculator {
       currOperand = localStorage.getItem("current");
       priorOperand = localStorage.getItem("computation");
       operator = memo["operator"];
+
+      currOperand = parseFloat(currOperand);
+      priorOperand = parseFloat(priorOperand);
+      operator = parseFloat(operator);
+      
       this.runCalculation(priorOperand, operator, currOperand);
       console.log("check 2");
     }
@@ -128,7 +136,6 @@ class Calculator {
   runCalculation(operand1, operation, operand2) {
     //perform math computation based on the operation button selected;
     let computation = 0;
-
     switch (operation) {
       case "+":
         computation = operand1 + operand2;
@@ -146,7 +153,6 @@ class Calculator {
         return;
     }
 
-    console.log("computation ran:", computation);
     localStorage.setItem("computation", computation.toString());
 
     return;
