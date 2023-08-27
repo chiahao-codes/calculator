@@ -82,7 +82,7 @@ class Calculator {
         //if no calculation to be done:
         if (!localStorage.getItem("computation") && !memo["priorOperand"]) {
           //store operator and priorOperand;
-          memo["operator"] = operator;
+          memo["operator"] = char;
           memo["priorOperand"] = currOperand;
           currOperand = "";
         } else {
@@ -103,7 +103,12 @@ class Calculator {
       } else {
         //build operand;
         currOperand += char;
-        console.log("currOperand:", currOperand);
+        //run computation if needed;
+        if (memo["priorOperand"] && memo["operator"]) {
+          //prepare for computation:
+          priorOperand = memo["priorOperand"], operator = memo["operator"];
+          this.runCalculation(priorOperand, operator, currOperand);
+        }
       }
     }
 
