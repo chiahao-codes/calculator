@@ -17,7 +17,7 @@ class Calculator {
     this.previousOperand = localStorage.getItem("previous");
     this.operation = localStorage.getItem("operation");
     this.calculated = localStorage.getItem("calculated");
-    this.opRegEx = /[+-*/]/;
+    this.opRegEx = /\+\-\*\//;
   }
 
   validateExpr(str) {
@@ -313,42 +313,4 @@ deleteButton.addEventListener("click", () => {
 
 
   /**
-   * 
-   *   op1 = localStorage.getItem("computation");
-      operator = toBeComputed[i + 1];
-      op2 = toBeComputed[i + 2];
-
-      console.log("op1:", op1);
-      console.log("operator:", operator);
-      console.log("op2:", op2);
-
-
-      if (op1 === null) {
-        //op1 should accumulate digit strings up until an operator is found;
-        for (let j = i; j < toBeComputed.length; j++)
-        op1 = toBeComputed[i];
-      }
-
-      if (operator == undefined) {
-        break;
-      }
-
-      if (op2 == undefined) {
-        op2 = localStorage.getItem("current");
-      }
-
-      op1 = parseFloat(op1);
-      op2 = parseFloat(op2);
-
-      this.runCalculation(op1, operator, op2);
-   * 
-   * 
-   * 
-   * this.currentOperand = this.currentOperand.toString().slice(0, -1); //returns the string you want to keep;
-    localStorage.setItem("current", this.currentOperand);
-    if (!localStorage.getItem("current")) {
-      localStorage.clear();
-      localStorage.setItem("initialZero", "true");
-      localStorage.setItem("current", "0");
-    }
      */
