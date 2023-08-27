@@ -20,10 +20,13 @@ class Calculator {
     this.opRegEx = /\+\-\*\//;
   }
 
-  validateExpr(str) {
+  /**
+   * validateExpr(str) {
     let result = this.opRegEx.test(str);
     return result
   }
+   *
+   */
 
   clear() {
     this.currentOperand = "";
@@ -44,12 +47,11 @@ class Calculator {
       if (currentLocalStorage.length === 1) {
         currentLocalStorage = "0";
       } else {
-         currentLocalStorage = currentLocalStorage.slice(0, -1);
-        }
+        currentLocalStorage = currentLocalStorage.slice(0, -1);
+      }
     }
 
     localStorage.setItem("current", currentLocalStorage);
-
   }
 
   appendNumber(number) {
@@ -60,7 +62,7 @@ class Calculator {
 
     return;
   }
-  
+
   //compute the mathematical expressions and display on screen;
   compute() {
     let currLocal,
@@ -80,9 +82,9 @@ class Calculator {
 
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-  
-    //if char is an operator
-      if (this.validateExpr(char)) {
+      console.log("char:", char);
+      //if char is an operator
+      if (this.opRegEx.test(char)) {
         //check & prepare variables for computing:
         //if no calculation to be done:
         if (!localStorage.getItem("computation") && !memo["priorOperand"]) {
@@ -98,7 +100,7 @@ class Calculator {
             priorOperand = memo["priorOperand"];
             operator = memo["operator"];
           }
-            //run computation
+          //run computation
           this.runCalculation(priorOperand, operator, currOperand);
           memo["operator"] = char;
           memo["priorOperand"] = "";
@@ -108,12 +110,11 @@ class Calculator {
       } else {
         //build operand;
         currOperand += char;
-        console.log("currOperand:",currOperand)
+        console.log("currOperand:", currOperand);
       }
     }
 
     if (localStorage.getItem("current")) {
-
       currOperand = localStorage.getItem("current");
       priorOperand = localStorage.getItem("computation");
       operator = memo["operator"];
@@ -123,7 +124,7 @@ class Calculator {
 
     localStorage.setItem("calculated", "true");
 
-    return 
+    return;
   }
 
   runCalculation(operand1, operation, operand2) {
@@ -146,11 +147,11 @@ class Calculator {
       default:
         return;
     }
-   
+
     console.log("computation ran:", computation);
     localStorage.setItem("computation", computation.toString());
 
-    return 
+    return;
   }
 
   //updates the display screen;
@@ -188,17 +189,18 @@ class Calculator {
     }
 
     if (localStorage.getItem("initialZero") === "true") {
-      localStorage.setItem("previous", "")
-      this.previousOperandTextElement.innerText = localStorage.getItem("previous");
+      localStorage.setItem("previous", "");
+      this.previousOperandTextElement.innerText =
+        localStorage.getItem("previous");
     }
 
     //update computation display if needed;
     if (computed && localStorage.getItem("calculated")) {
       curr = computed;
       localStorage.setItem("previous", "");
-      this.previousOperandTextElement.innerText = localStorage.getItem("previous");
+      this.previousOperandTextElement.innerText =
+        localStorage.getItem("previous");
     }
-
 
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
