@@ -89,7 +89,7 @@ class Calculator {
           //store operator and priorOperand;
           memo["operator"] = operator;
           memo["priorOperand"] = currOperand;
-       
+          console.log("memo[priorOperand]:", memo["priorOperand"]);
         } else {
           //prepare for computation;
           if (localStorage.getItem("computation")) {
