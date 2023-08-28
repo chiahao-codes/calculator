@@ -259,14 +259,14 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     let currentLS = localStorage.getItem("current");
-    let previousLS = localStorage.getItem("previous");
-    let operationLS = localStorage.getItem("operation");
+    // let previousLS = localStorage.getItem("previous");
+    // let operationLS = localStorage.getItem("operation");
     let previousOperandTextElementLS = localStorage.getItem("prevOperandText");
     let operationButton = button.innerText;
 
     if (currentLS == null || currentLS == "") {
       alert("Invalid entry");
-      return
+      return;
     }
 
     let lastChar = currentLS.charAt(currentLS.length - 1);
@@ -278,24 +278,27 @@ operationButtons.forEach((button) => {
     //build out strings in local storage;+
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
 
-    if (previousLS == null) {
+    /**
+     * if (previousLS == null) {
       previousLS = `${currentLS} `;
     } else {
       previousLS += `${currentLS} `;
     }
-    previousOperandTextElementLS += currentLS;
-
+    
     if (operationLS == null) {
       operationLS = `${operationButton} `;
     } else {
       operationLS += `${operationButton} `;
     }
+     */
+
+    previousOperandTextElementLS += currentLS;
     previousOperandTextElementLS += operationButton;
 
     currentLS = "";
-    localStorage.setItem("previous", previousLS);
+
     localStorage.setItem("current", currentLS);
-    localStorage.setItem("operation", operationLS);
+
     localStorage.setItem("prevOperandText", previousOperandTextElementLS);
     localStorage.setItem("operationButtonPushed", "true");
     localStorage.setItem("initialZero", "false");
