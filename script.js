@@ -72,19 +72,30 @@ class Calculator {
     console.log("toBeComputed", toBeComputed);
 
     let memo = {};
-
+    let counter = 0;
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-      //3*2 +5 +3
+      //1+ (1)(+) 1 = 4
+      //calculation is being run at ();
       //if char is an operator
       if (regExp.test(char)) {
-        //check & prepare variables for computing:
         //if no calculation to be done:
         if (!localStorage.getItem("computation") && !memo["priorOperand"]) {
           //store operator and priorOperand;
           memo["operator"] = char;
-          memo["priorOperand"] = currOperand;
+          //memo["priorOperand"] = currOperand; no need for this property if using "counter";
+          memo[counter] = currOperand;
+
+          //if prior Operand exists
+          if (memo[counter - 1] !== undefined) {
+            //run computation
+            priorOperand = parseFloat(memo[counter - 1]);
+            currOperand = parseFloat(memo[counter]);
+            operator = memo["operator"];
+            this.runCalculation(priorOperand, operator, currOperand);
+          }
           currOperand = "";
+          counter++;
         } else {
           //bundle computation for longer math expression;
           //prepare for computation;
@@ -104,26 +115,31 @@ class Calculator {
           memo["operator"] = char;
           memo["priorOperand"] = localStorage.getItem("computation");
           currOperand = "";
-          console.log("check...");
+          priorOperand = "";
         }
       } else {
         //build operand;
         currOperand += char;
-        //run computation if needed;
-        if (memo["priorOperand"] && memo["operator"]) {
-          //prepare for computation:
-          priorOperand = memo["priorOperand"];
-          operator = memo["operator"];
 
-          currOperand = parseFloat(currOperand);
-          priorOperand = parseFloat(priorOperand);
-
+        //if char is the final index, run calculation;
+        if (i === toBeComputed.length - 1) {
+            priorOperand = memo["priorOperand"];
+            operator = memo["operator"];
+            currOperand = localStorage.getItem("current");
+          
+             priorOperand = parseFloat(priorOperand);
+            currOperand = parseFloat(currOperand); 
           this.runCalculation(priorOperand, operator, currOperand);
-          memo["priorOperand"] = localStorage.getItem("computation");
-          currOperand = "";
+           currOperand = "";
+            priorOperand = "";
+            memo["operator"] = "";
+          memo["priorOperand"] = "";
+          localStorage.removeItem("prevOperandText");
+          
         }
       }
     }
+
 
     localStorage.setItem("calculated", "true");
 
@@ -190,17 +206,17 @@ class Calculator {
     }
 
     if (localStorage.getItem("initialZero") === "true") {
-      localStorage.setItem("previous", "");
-      this.previousOperandTextElement.innerText =
-        localStorage.getItem("previous");
+      //localStorage.setItem("previous", "");
+      this.previousOperandTextElement.innerText = "";
+      //localStorage.getItem("previous");
     }
 
     //update computation display if needed;
     if (computed && localStorage.getItem("calculated")) {
       curr = computed;
-      localStorage.setItem("previous", "");
-      this.previousOperandTextElement.innerText =
-        localStorage.getItem("previous");
+      //localStorage.setItem("previous", "");
+      this.previousOperandTextElement.innerText = "";
+       
     }
 
     localStorage.setItem("current", curr);
@@ -290,12 +306,10 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
-  let prevLS = localStorage.getItem("previous");
 
-  if (currLS == "" || prevLS == "") {
+  if (currLS == "") {
     return
   }
-  console.log("equals pushed...");
 
  let lastChar = currLS.charAt(currLS.length - 1);
  if (lastChar === ".") {
@@ -320,17 +334,6 @@ deleteButton.addEventListener("click", () => {
 });
 
  /**
-     *   if (localStorage.getItem("current")) {
-      currOperand = localStorage.getItem("current");
-      priorOperand = memo["priorOperand"];
-      operator = memo["operator"];
-
-      currOperand = parseFloat(currOperand);
-      priorOperand = parseFloat(priorOperand);
-
-      this.runCalculation(priorOperand, operator, currOperand);
-    }
-
-     */
-  /**
+  * 
+  *   
      */
