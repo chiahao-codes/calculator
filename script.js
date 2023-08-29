@@ -24,8 +24,8 @@ class Calculator {
     localStorage.clear();
     localStorage.setItem("initialZero", "true");
     localStorage.setItem("current", "0");
-    localStorage.removeItem("previous");
     localStorage.setItem("calculated", "false");
+    this.currentOperandTextElement.innerText = "0";
   }
 
   delete() {
@@ -169,6 +169,7 @@ class Calculator {
         //update previousOperandText display
         this.previousOperandTextElement.innerText =
           localStorage.getItem("prevOperandText");
+        curr = "";
       }
 
         if (localStorage.getItem("initialZero") === "true") {
@@ -176,6 +177,7 @@ class Calculator {
         }
     }
 
+    if (curr == null) curr = 0;
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
@@ -216,8 +218,6 @@ numberButtons.forEach((button) => {
 operationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     let currentLS = localStorage.getItem("current");
-    // let previousLS = localStorage.getItem("previous");
-    // let operationLS = localStorage.getItem("operation");
     let previousOperandTextElementLS = localStorage.getItem("prevOperandText");
     let operationButton = button.innerText;
 
@@ -231,8 +231,12 @@ operationButtons.forEach((button) => {
       currentLS = currentLS + "0";
     }
 
-  
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
+
+    //continue math operation:
+    if (!previousOperandTextElementLS && localStorage.getItem("calculated") && currentLS) {
+      localStorage.setItem("calculated", false);
+    }
 
     previousOperandTextElementLS += currentLS;
     previousOperandTextElementLS += operationButton;
