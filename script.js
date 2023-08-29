@@ -80,10 +80,12 @@ class Calculator {
       console.log("elem:", elem);
       //66.2564+.025 + .015 
       if (regExp.test(elem) || i === toBeComputed.length-1) {
-
-        if (memo["priorOperand"] && memo["operator"]) {
-          memo["currentOperand"] = operand;
+        if (i === toBeComputed.length - 1) {
+          operand += elem;
         }
+          if (memo["priorOperand"] && memo["operator"]) {
+            memo["currentOperand"] = operand;
+          }
 
         if (!memo["priorOperand"]) {
           memo["priorOperand"] = operand;
