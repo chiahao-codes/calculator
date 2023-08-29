@@ -1,9 +1,7 @@
 window.addEventListener("load", (e) => {
   console.log("Loaded...");
-  if (localStorage.getItem("previous") == null) {
-    localStorage.setItem("initialZero", "true");
-    localStorage.setItem("current", "0");
-  }
+  localStorage.setItem("initialZero", "true");
+  localStorage.setItem("current", "0");
   calculator.updateDisplay();
 });
 
@@ -82,10 +80,10 @@ class Calculator {
       } else {
             //if (initial) ongoing math expression:
             priorOperand = memo["priorOperand"];
-            operator = memo["operator"];
         }
-        if (!currOperand) currOperand = localStorage.getItem("current");
-        
+
+        currOperand = localStorage.getItem("current");
+        operator = memo["operator"];
           priorOperand = parseFloat(priorOperand);
           currOperand = parseFloat(currOperand); 
         this.runCalculation(priorOperand, operator, currOperand);
@@ -233,8 +231,7 @@ operationButtons.forEach((button) => {
       currentLS = currentLS + "0";
     }
 
-    //collect each "current" & operation button entry;
-    //build out strings in local storage;+
+  
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
 
     previousOperandTextElementLS += currentLS;
