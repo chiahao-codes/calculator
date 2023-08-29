@@ -238,11 +238,6 @@ numberButtons.forEach((button) => {
       localStorage.setItem("current", "");
     }
 
-    if (localStorage.getItem("initialZero")) {
-      localStorage.setItem("initialZero", "false");
-      localStorage.setItem("current", "");
-    }
-
     localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
     calculator.appendNumber(button.innerText);
