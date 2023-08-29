@@ -101,6 +101,7 @@ class Calculator {
       }
     }
 
+    console.log(localStorage.getItem("computation"));
     localStorage.setItem("current", localStorage.getItem("computation"));
     localStorage.setItem("prevOperandText", "");
     localStorage.setItem("calculated", true);
