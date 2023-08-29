@@ -102,6 +102,8 @@ class Calculator {
       }
     }
 
+    localStorage.setItem("current", localStorage.getItem("computation"));
+    localStorage.setItem("calcutated", true);
     return;
   }
 
@@ -137,45 +139,44 @@ class Calculator {
     let opsButton = localStorage.getItem("operationButtonPushed");
     let computed = localStorage.getItem("computation");
 
-    //remove initial zero;
-    if (curr.length > 1) {
-      if (localStorage.getItem("initialZero") && curr[0] === "0") {
-        localStorage.setItem("initialZero", "false");
-        curr = curr.slice(1);
-      }
-      //remove consecutive initial zeros
-      if (curr[0] === "0" && curr[1] === "0") {
-        curr = "0";
-      }
-    }
-
-    //if more than one decimal, remove previous decimal from curr;
-    let decimalsArray = curr.match(regExp);
-    if (decimalsArray) {
-      if (decimalsArray.length > 1) {
-        curr = curr.slice(0, -1);
-      }
-    }
-
-    //Only if operation button was pushed...
-    if (opsButton === "true") {
-      //update previousOperandText display
-      this.previousOperandTextElement.innerText =
-        localStorage.getItem("prevOperandText");
-    }
-
-    if (localStorage.getItem("initialZero") === "true") {
-      //localStorage.setItem("previous", "");
-      this.previousOperandTextElement.innerText = "";
-      //localStorage.getItem("previous");
-    }
-
     //update computation display if needed;
     if (computed && localStorage.getItem("calculated")) {
       curr = computed;
-      //localStorage.setItem("previous", "");
+      localStorage.setItem("prevOperandText", "");
       this.previousOperandTextElement.innerText = "";
-       
+    } else {
+      //remove initial zero;
+      if (curr.length > 1) {
+        if (localStorage.getItem("initialZero") && curr[0] === "0") {
+          localStorage.setItem("initialZero", "false");
+          curr = curr.slice(1);
+        }
+        //remove consecutive initial zeros
+        if (curr[0] === "0" && curr[1] === "0") {
+          curr = "0";
+        }
+      }
+
+      //if more than one decimal, remove previous decimal from curr;
+      let decimalsArray = curr.match(regExp);
+      if (decimalsArray) {
+        if (decimalsArray.length > 1) {
+          curr = curr.slice(0, -1);
+        }
+      }
+
+      //Only if operation button was pushed...
+      if (opsButton === "true") {
+        //update previousOperandText display
+        this.previousOperandTextElement.innerText =
+          localStorage.getItem("prevOperandText");
+      }
+
+        if (localStorage.getItem("initialZero") === "true") {
+          //localStorage.setItem("previous", "");
+          this.previousOperandTextElement.innerText = "";
+          //localStorage.getItem("previous");
+        }
     }
 
     localStorage.setItem("current", curr);
