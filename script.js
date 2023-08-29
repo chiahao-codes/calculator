@@ -75,26 +75,25 @@ class Calculator {
       let char = toBeComputed[i];
       //if char is an operator
       if (regExp.test(char)) {
-
         if (!memo["priorOperand"]) {
           //if initial computation
           priorOperand = currOperand;
-          operator = char;
+          memo["operator"] = char;
       } else {
             //if (initial) ongoing math expression:
             priorOperand = memo["priorOperand"];
             operator = memo["operator"];
         }
+       
           currOperand = localStorage.getItem("current");
           priorOperand = parseFloat(priorOperand);
           currOperand = parseFloat(currOperand); 
         this.runCalculation(priorOperand, operator, currOperand);
         memo["priorOperand"] = localStorage.getItem("computation");
-        memo["operator"] = char;
+        memo["operator"] = "";
         priorOperand = "";
         currOperand = "";
         operator = "";
-
       } 
       else {
         //build operand;
@@ -103,6 +102,7 @@ class Calculator {
     }
 
     localStorage.setItem("current", localStorage.getItem("computation"));
+    localStorage.setItem("prevOperandText", "");
     localStorage.setItem("calculated", true);
     return;
   }
@@ -142,8 +142,7 @@ class Calculator {
     //update computation display if needed;
     if (localStorage.getItem("calculated")) {
       curr = computed;
-      localStorage.removeItem("prevOperandText")
-      this.previousOperandTextElement.innerText = "";
+      this.previousOperandTextElement.innerText = localStorage.getItem("prevOperandText");
       console.log("running...")
     } else {
       //remove initial zero;
@@ -174,9 +173,7 @@ class Calculator {
       }
 
         if (localStorage.getItem("initialZero") === "true") {
-         
           this.previousOperandTextElement.innerText = "";
-         
         }
     }
 
