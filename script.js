@@ -167,10 +167,11 @@ class Calculator {
     }
 
     //update computation display if needed;
-    if (localStorage.getItem("prevOperandText") && curr === ""){
-        this.previousOperandTextElement.innerText =
-          localStorage.getItem("prevOperandText");
-    }else {
+    if (localStorage.getItem("prevOperandText")){
+        this.previousOperandTextElement.innerText = localStorage.getItem("prevOperandText");
+    }
+
+    
       //remove initial zero;
       if (curr.length > 1) {
         if (localStorage.getItem("initialZero") && curr[0] === "0") {
@@ -200,7 +201,7 @@ class Calculator {
           localStorage.getItem("prevOperandText");
         curr = "";
       }
-    }
+    
 
   
     localStorage.setItem("current", curr);
