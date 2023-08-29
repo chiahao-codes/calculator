@@ -211,7 +211,7 @@ let calculator = new Calculator(
 );
 
 numberButtons.forEach((button) => {
-  button.addEventListener("click", (button) => {
+  button.addEventListener("click", () => {
     localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
     
