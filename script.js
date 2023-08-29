@@ -103,7 +103,7 @@ class Calculator {
     }
 
     localStorage.setItem("current", localStorage.getItem("computation"));
-    localStorage.setItem("calcutated", true);
+    localStorage.setItem("calculated", true);
     return;
   }
 
