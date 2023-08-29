@@ -145,10 +145,14 @@ class Calculator {
     }
 
     //update computation display if needed;
-    if (localStorage.getItem("calculated") && localStorage.getItem("prevOperandText")&& localStorage.getItem("operationButtonPushed")) {
-      curr = "";
-      this.previousOperandTextElement.innerText = localStorage.getItem("prevOperandText");
-    } else {
+    if (localStorage.getItem("prevOperandText")){
+      if (localStorage.getItem("operationButtonPushed")) {
+           this.previousOperandTextElement.innerText =
+          localStorage.getItem("prevOperandText");
+        curr = "";
+      }
+     
+    }else {
       //remove initial zero;
       if (curr.length > 1) {
         if (localStorage.getItem("initialZero") && curr[0] === "0") {
