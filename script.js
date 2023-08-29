@@ -146,12 +146,11 @@ class Calculator {
 
     //update computation display if needed;
     if (localStorage.getItem("prevOperandText")){
-      if (localStorage.getItem("operationButtonPushed")) {
-           this.previousOperandTextElement.innerText =
-          localStorage.getItem("prevOperandText");
+      if (!localStorage.getItem("operationButtonPushed")) {
         curr = "";
       }
-     
+        this.previousOperandTextElement.innerText =
+          localStorage.getItem("prevOperandText");
     }else {
       //remove initial zero;
       if (curr.length > 1) {
