@@ -234,11 +234,16 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (localStorage.getItem("initialZero")) {
+      localStorage.setItem("initialZero", "false");
+      localStorage.setItem("current", "");
+    }
+    
     if (button.innerText === "." && localStorage.getItem("calculated") === "true") {
       localStorage.setItem("current", "");
     }
 
-    localStorage.setItem("cleared",  "false");
+      localStorage.setItem("cleared", "false");
     localStorage.setItem("operationButtonPushed", "false");
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
