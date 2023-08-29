@@ -140,9 +140,9 @@ class Calculator {
     let computed = localStorage.getItem("computation");
 
     //update computation display if needed;
-    if (computed && localStorage.getItem("calculated")) {
+    if (localStorage.getItem("calculated")) {
       curr = computed;
-      localStorage.setItem("prevOperandText", "");
+      localStorage.removeItem("prevOperandText")
       this.previousOperandTextElement.innerText = "";
       console.log("running...")
     } else {
@@ -174,9 +174,9 @@ class Calculator {
       }
 
         if (localStorage.getItem("initialZero") === "true") {
-          //localStorage.setItem("previous", "");
+         
           this.previousOperandTextElement.innerText = "";
-          //localStorage.getItem("previous");
+         
         }
     }
 
