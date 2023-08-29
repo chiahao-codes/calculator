@@ -167,7 +167,7 @@ class Calculator {
     }
 
     //update computation display if needed;
-    if (localStorage.getItem("prevOperandText")){
+    if (localStorage.getItem("prevOperandText") && curr === ""){
         this.previousOperandTextElement.innerText =
           localStorage.getItem("prevOperandText");
     }else {
@@ -234,8 +234,11 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.innerText === "." && localStorage.getItem("calculated") === "true") {
-      localStorage.setItem("current", "");
+    if (button.innerText === "." ) {
+      if (localStorage.getItem("calculated") === "true") {
+        localStorage.setItem("current", "");
+      }
+        
     }
 
     if (localStorage.getItem("prevOperandText")) {
