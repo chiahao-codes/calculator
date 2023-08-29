@@ -149,6 +149,7 @@ class Calculator {
         if (localStorage.getItem("initialZero") && curr[0] === "0") {
           localStorage.setItem("initialZero", "false");
           curr = curr.slice(1);
+          this.previousOperandTextElement.innerText = "";
         }
         //remove consecutive initial zeros
         if (curr[0] === "0" && curr[1] === "0") {
@@ -163,7 +164,7 @@ class Calculator {
           curr = curr.slice(0, -1);
         }
       }
-
+   
       //Only if operation button was pushed...
       if (opsButton === "true") {
         //update previousOperandText display
@@ -171,13 +172,9 @@ class Calculator {
           localStorage.getItem("prevOperandText");
         curr = "";
       }
-
-        if (localStorage.getItem("initialZero") === "true") {
-          this.previousOperandTextElement.innerText = "";
-        }
     }
 
-    if (curr == null) curr = 0;
+  
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
