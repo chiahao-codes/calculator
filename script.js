@@ -34,7 +34,9 @@ class Calculator {
 
     if (currentLocalStorage && !previousLocalStorage) {
       if (currentLocalStorage.length === 1) {
-        currentLocalStorage = "";
+        localStorage.setItem("initialZero", "true");
+        localStorage.setItem("current", "0");
+        currentLocalStorage = localStorage.getItem("current");
       } else {
         currentLocalStorage = currentLocalStorage.slice(0, -1);
       }
@@ -232,7 +234,7 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.innerText === "." && localStorage.getItem("calculated") && localStorage.getItem("current")) {
+    if (button.innerText === "." && localStorage.getItem("current")) {
       calculator.clear();
       localStorage.setItem("current", "");
       localStorage.setItem("initialZero", "false");
