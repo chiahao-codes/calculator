@@ -34,7 +34,7 @@ class Calculator {
 
     if (currentLocalStorage && !previousLocalStorage) {
       if (currentLocalStorage.length === 1) {
-        currentLocalStorage = "0";
+        currentLocalStorage = "";
       } else {
         currentLocalStorage = currentLocalStorage.slice(0, -1);
       }
