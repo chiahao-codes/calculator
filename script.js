@@ -74,28 +74,35 @@ class Calculator {
 
     //use Iterative approach instead of for-loop;
     //iterate over each index, computation updated along the way;
+    let operand = "";
     for (let i = 0; i < toBeComputed.length; i++) { 
       let elem = toBeComputed[i];
       console.log("elem:", elem);
-      //3+2 = 6
-      if (!regExp.test(elem)) {
-        if (!memo["priorOperand"]) {
-          memo["priorOperand"] = elem;
-        } else {
-            if (!memo["currentOperand"] && memo["priorOperand"]) {
-              memo["currentOperand"] = elem;
-            }
+      //66.2564+.025 + .015 
+      if (regExp.test(elem) || i === toBeComputed.length-1) {
+
+        if (memo["priorOperand"] && memo["operator"]) {
+          memo["currentOperand"] = operand;
         }
+
+        if (!memo["priorOperand"]) {
+          memo["priorOperand"] = operand;
+        }
+
+        if (!memo["operator"]) {
+          memo["operator"] = elem;
+        }
+
+        operand = "";
 
       } else {
-        if (!memo["op"]) {
-          memo["op"] = elem;
-        }
+      //gather element;
+        operand += elem;
       }
 
-      if (memo["priorOperand"] && memo["currentOperand"] && memo["op"]) {
+      if (memo["priorOperand"] && memo["currentOperand"] && memo["operator"]) {
         //run calculation;
-        operator = memo["op"];
+        operator = memo["operator"];
         priorOperand = parseFloat(memo["priorOperand"]);
         currOperand = parseFloat(memo["currentOperand"]);
 
@@ -104,11 +111,12 @@ class Calculator {
         computation = this.runCalculation(priorOperand, operator, currOperand);
         memo["priorOperand"] = computation;
         memo["currentOperand"] = "";
-        memo["op"] = "";
+        memo["operator"] = elem;
         operator = ""; 
         priorOperand = "";
         currOperand = "";
       }
+     
     }
 
 
