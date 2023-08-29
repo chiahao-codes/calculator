@@ -84,8 +84,8 @@ class Calculator {
             priorOperand = memo["priorOperand"];
             operator = memo["operator"];
         }
-       
-          currOperand = localStorage.getItem("current");
+        if (!currOperand) currOperand = localStorage.getItem("current");
+        
           priorOperand = parseFloat(priorOperand);
           currOperand = parseFloat(currOperand); 
         this.runCalculation(priorOperand, operator, currOperand);
