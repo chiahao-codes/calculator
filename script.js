@@ -144,6 +144,7 @@ class Calculator {
       curr = computed;
       localStorage.setItem("prevOperandText", "");
       this.previousOperandTextElement.innerText = "";
+      console.log("running...")
     } else {
       //remove initial zero;
       if (curr.length > 1) {
