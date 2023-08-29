@@ -25,8 +25,7 @@ class Calculator {
     localStorage.setItem("initialZero", "true");
     localStorage.setItem("current", "0");
     localStorage.setItem("calculated", "false");
-    this.currentOperandTextElement.innerText = localStorage.getItem("current");
-    this.previousOperandTextElement.innerText = "";
+    localStorage.setItem("cleared", "true");
   }
 
   delete() {
@@ -139,7 +138,11 @@ class Calculator {
     let regExp = /\./g;
     let curr = localStorage.getItem("current");
     let opsButton = localStorage.getItem("operationButtonPushed");
-    //let computed = localStorage.getItem("computation");
+
+    if (localStorage.getItem("cleared")) {
+      this.currentOperandTextElement.innerText = localStorage.getItem("current");
+      this.previousOperandTextElement.innerText = "";
+    }
 
     //update computation display if needed;
     if (!localStorage.getItem("calculated") && localStorage.getItem("prevOperandText")) {
@@ -209,6 +212,7 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
