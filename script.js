@@ -66,10 +66,7 @@ class Calculator {
     prevOperandText = localStorage.getItem("prevOperandText");
 
     toBeComputed = `${prevOperandText}${currLocal}`;
-    
-    let array = toBeComputed.split(regExp);
-    console.log(array);
-
+    console.log("tobeComputed:", toBeComputed);
     // Equals button pushed...
     //2+2+   3   + 4
     let memo = {};
@@ -77,9 +74,9 @@ class Calculator {
 
     //use Iterative approach instead of for-loop;
     //iterate over each index, computation updated along the way;
-    for (let i = 0; i < array.length; i++) { 
-      let elem = array[i];
-
+    for (let i = 0; i < toBeComputed.length; i++) { 
+      let elem = toBeComputed[i];
+      console.log("elem:", elem);
       if (!regExp.test(elem)) {
         if (!memo["priorOperand"]) {
           memo["priorOperand"] = elem;
