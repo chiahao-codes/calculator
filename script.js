@@ -234,9 +234,8 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.innerText === "." && localStorage.getItem("initialZero")) {
+    if (button.innerText === "." && localStorage.getItem("calculated")) {
       localStorage.setItem("current", "");
-      localStorage.setItem("initialZero", "false");
     }
     localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
