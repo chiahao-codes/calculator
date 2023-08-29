@@ -73,9 +73,11 @@ class Calculator {
     let memo = {};
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
+      console.log("char:", char);
+      console.log("currOperand:", currOperand);
+
       //if char is an operator
       if (regExp.test(char)) {
-      
         if (!memo["priorOperand"]) {
           //if initial computation
          memo["priorOperand"] = currOperand;
@@ -88,6 +90,10 @@ class Calculator {
         operator = memo["operator"];
         priorOperand = parseFloat(priorOperand);
         currOperand = parseFloat(currOperand); 
+        
+        console.log("priorOperand:", priorOperand);
+        console.log("currOperand", currOperand);
+
         this.runCalculation(priorOperand, operator, currOperand);
         memo["priorOperand"] = localStorage.getItem("computation");
         memo["operator"] = "";
