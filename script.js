@@ -68,7 +68,7 @@ class Calculator {
     toBeComputed = `${prevOperandText}${currLocal}`;
     console.log("tobeComputed:", toBeComputed);
     // Equals button pushed...
-    //2+2+   3   + 4
+    //3+2 = 6
     let memo = {};
     let computation = 0;
 
@@ -77,6 +77,7 @@ class Calculator {
     for (let i = 0; i < toBeComputed.length; i++) { 
       let elem = toBeComputed[i];
       console.log("elem:", elem);
+
       if (!regExp.test(elem)) {
         if (!memo["priorOperand"]) {
           memo["priorOperand"] = elem;
@@ -96,6 +97,7 @@ class Calculator {
         operator = memo["op"];
         priorOperand = parseFloat(memo["priorOperand"]);
         currOperand = parseFloat(memo["currentOperand"]);
+        console.log(priorOperand, currOperand);
         computation = this.runCalculation(priorOperand, operator, currOperand);
         memo["priorOperand"] = computation;
         memo["currentOperand"] = "";
