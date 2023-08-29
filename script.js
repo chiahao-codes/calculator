@@ -145,8 +145,8 @@ class Calculator {
     }
 
     //update computation display if needed;
-    if (!localStorage.getItem("calculated") && localStorage.getItem("prevOperandText")) {
-      curr ="";
+    if (localStorage.getItem("calculated") && localStorage.getItem("prevOperandText")&& localStorage.getItem("operationButtonPushed")) {
+      curr = "";
       this.previousOperandTextElement.innerText = localStorage.getItem("prevOperandText");
     } else {
       //remove initial zero;
@@ -211,9 +211,10 @@ let calculator = new Calculator(
 );
 
 numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (button) => {
     localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
+    
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   });
