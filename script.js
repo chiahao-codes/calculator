@@ -50,7 +50,6 @@ class Calculator {
     let currentLS = localStorage.getItem("current");
     currentLS += number.toString();
     localStorage.setItem("current", currentLS); // resets/sets new current number;
-
     return;
   }
 
@@ -72,76 +71,36 @@ class Calculator {
     console.log("toBeComputed", toBeComputed);
 
     let memo = {};
-    let counter = 0;
     for (let i = 0; i < toBeComputed.length; i++) {
       let char = toBeComputed[i];
-      //1+ (1)(+) 1 = 4
-      //calculation is being run at ();
       //if char is an operator
       if (regExp.test(char)) {
-        //if no calculation to be done:
-        if (!localStorage.getItem("computation") && !memo["priorOperand"]) {
-          //store operator and priorOperand;
-          memo["operator"] = char;
-          //memo["priorOperand"] = currOperand; no need for this property if using "counter";
-          memo[counter] = currOperand;
 
-          //if prior Operand exists
-          if (memo[counter - 1] !== undefined) {
-            //run computation
-            priorOperand = parseFloat(memo[counter - 1]);
-            currOperand = parseFloat(memo[counter]);
-            operator = memo["operator"];
-            this.runCalculation(priorOperand, operator, currOperand);
-          }
-          currOperand = "";
-          counter++;
-        } else {
-          //bundle computation for longer math expression;
-          //prepare for computation;
-          if (localStorage.getItem("computation")) {
-            priorOperand = localStorage.getItem("computation");
-            //localStorage.removeItem("computation");
-          } else {
+        if (!memo["priorOperand"]) {
+          //if initial computation
+          priorOperand = currOperand;
+          operator = char;
+      } else {
+            //if (initial) ongoing math expression:
             priorOperand = memo["priorOperand"];
             operator = memo["operator"];
-          }
+        }
           currOperand = localStorage.getItem("current");
-          //run computation
           priorOperand = parseFloat(priorOperand);
           currOperand = parseFloat(currOperand); 
+        this.runCalculation(priorOperand, operator, currOperand);
+        memo["priorOperand"] = localStorage.getItem("computation");
+        memo["operator"] = char;
+        priorOperand = "";
+        currOperand = "";
+        operator = "";
 
-          this.runCalculation(priorOperand, operator, currOperand);
-          memo["operator"] = char;
-          memo["priorOperand"] = localStorage.getItem("computation");
-          currOperand = "";
-          priorOperand = "";
-        }
-      } else {
+      } 
+      else {
         //build operand;
         currOperand += char;
-
-        //if char is the final index, run calculation;
-        if (i === toBeComputed.length - 1) {
-            priorOperand = memo["priorOperand"];
-            operator = memo["operator"];
-            currOperand = localStorage.getItem("current");
-          
-             priorOperand = parseFloat(priorOperand);
-            currOperand = parseFloat(currOperand); 
-          this.runCalculation(priorOperand, operator, currOperand);
-           currOperand = "";
-            priorOperand = "";
-            memo["operator"] = "";
-          memo["priorOperand"] = "";
-          localStorage.removeItem("prevOperandText");
-          
-        }
       }
     }
-
-
-    localStorage.setItem("calculated", "true");
 
     return;
   }
@@ -278,20 +237,6 @@ operationButtons.forEach((button) => {
     //build out strings in local storage;+
     if (previousOperandTextElementLS == null) previousOperandTextElementLS = "";
 
-    /**
-     * if (previousLS == null) {
-      previousLS = `${currentLS} `;
-    } else {
-      previousLS += `${currentLS} `;
-    }
-    
-    if (operationLS == null) {
-      operationLS = `${operationButton} `;
-    } else {
-      operationLS += `${operationButton} `;
-    }
-     */
-
     previousOperandTextElementLS += currentLS;
     previousOperandTextElementLS += operationButton;
 
@@ -337,6 +282,42 @@ deleteButton.addEventListener("click", () => {
 });
 
  /**
+  *  //if char is the final index, run calculation;
+        if (i === toBeComputed.length - 1) {
+            priorOperand = memo[priorOperandCounter];
+            operator = memo["operator"];
+            currOperand = localStorage.getItem("current");
+          
+             priorOperand = parseFloat(priorOperand);
+            currOperand = parseFloat(currOperand); 
+          this.runCalculation(priorOperand, operator, currOperand);
+          
+          
+        }
+  * else {
+          //bundle computation for longer math expression;
+          //prepare for computation;
+          priorOperand = localStorage.getItem("computation");
+          operator = memo["operator"];
+          currOperand = localStorage.getItem("current");
+          //run computation
+          priorOperand = parseFloat(priorOperand);
+          currOperand = parseFloat(currOperand); 
+
+          this.runCalculation(priorOperand, operator, currOperand);
+          memo["operator"] = char;
+          memo["priorOperand"] = localStorage.getItem("computation");
+          currOperand = "";
+          priorOperand = "";
+        }
   * 
+  *  //if prior Operand exists
+          if (memo[counter - 1] !== undefined) {
+            //run computation
+            priorOperand = parseFloat(memo[counter - 1]);
+            currOperand = parseFloat(memo[counter]);
+            operator = memo["operator"];
+            this.runCalculation(priorOperand, operator, currOperand);
+          }
   *   
      */
