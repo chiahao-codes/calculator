@@ -232,9 +232,13 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (button.innerText === "." && localStorage.getItem("calculated") && localStorage.getItem("current")) {
+      calculator.clear();
+      localStorage.setItem("current", "");
+      localStorage.setItem("initialZero", "false");
+    }
     localStorage.setItem("cleared",  "false");
     localStorage.setItem("operationButtonPushed", "false");
-    
     calculator.appendNumber(button.innerText);
     calculator.updateDisplay();
   });
