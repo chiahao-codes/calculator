@@ -77,15 +77,16 @@ class Calculator {
     for (let i = 0; i < toBeComputed.length; i++) { 
       let elem = toBeComputed[i];
       console.log("elem:", elem);
-
+      //3+2 = 6
       if (!regExp.test(elem)) {
         if (!memo["priorOperand"]) {
           memo["priorOperand"] = elem;
+        } else {
+            if (!memo["currentOperand"] && memo["priorOperand"]) {
+              memo["currentOperand"] = elem;
+            }
         }
 
-        if (!memo["currentOperand"] && memo["priorOperand"]) {
-          memo["currentOperand"] = elem;
-        }
       } else {
         if (!memo["op"]) {
           memo["op"] = elem;
@@ -97,7 +98,9 @@ class Calculator {
         operator = memo["op"];
         priorOperand = parseFloat(memo["priorOperand"]);
         currOperand = parseFloat(memo["currentOperand"]);
+
         console.log(priorOperand, currOperand);
+
         computation = this.runCalculation(priorOperand, operator, currOperand);
         memo["priorOperand"] = computation;
         memo["currentOperand"] = "";
