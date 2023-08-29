@@ -238,6 +238,12 @@ numberButtons.forEach((button) => {
       localStorage.setItem("current", "");
     }
 
+    if (localStorage.getItem("prevOperandText")) {
+      if (localStorage.getItem("current") === "0") {
+        localStorage.setItem("current", "");
+      }
+    }
+
     localStorage.setItem("initialZero", "false");
     localStorage.setItem("cleared", "false");
     localStorage.setItem("operationButtonPushed", "false");
