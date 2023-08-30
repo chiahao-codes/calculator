@@ -235,12 +235,8 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    /**
-     * if (localStorage.getItem("calculated") === "true") {
-      localStorage.setItem("current", "");
-    }
-     */
-
+    
+    
     if (button.innerText === ".") {
       if (localStorage.getItem("calculated") === "true") {
         localStorage.setItem("current", "");
@@ -249,6 +245,12 @@ numberButtons.forEach((button) => {
 
     if (localStorage.getItem("prevOperandText")) {
       if (localStorage.getItem("current") === "0") {
+        localStorage.setItem("current", "");
+      }
+    }
+
+    if (localStorage.getItem("calculated")) {
+      if (localStorage.getItem("computation") === localStorage.getItem("current")) {
         localStorage.setItem("current", "");
       }
     }
@@ -327,7 +329,3 @@ deleteButton.addEventListener("click", () => {
   calculator.delete();
   calculator.updateDisplay();
 });
-
- /**
-  *
-     */
