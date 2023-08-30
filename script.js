@@ -32,6 +32,11 @@ class Calculator {
     let currentLocalStorage = localStorage.getItem("current");
     let prevOpText = localStorage.getItem("prevOperandText");
 
+    if (localStorage.getItem("initialZero") && localStorage.getItem("computation")) {
+      localStorage.removeItem("computation");
+      localStorage.setItem("calculated", "false");
+    }
+
     if (currentLocalStorage) {
       if (currentLocalStorage.length === 1) {
         localStorage.setItem("initialZero", "true");
