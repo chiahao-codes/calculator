@@ -253,11 +253,6 @@ numberButtons.forEach((button) => {
       }
     }
 
-    if (!localStorage.getItem("prevOperandText") && localStorage.getItem("calculated") && localStorage.getItem("current")) {
-      localStorage.setItem("current", "");
-      localStorage.setItem("calculated", "false");
-    }
-
     localStorage.setItem("initialZero", "false");
     localStorage.setItem("cleared", "false");
     localStorage.setItem("operationButtonPushed", "false");
@@ -286,7 +281,7 @@ operationButtons.forEach((button) => {
 
     //continue math operation:
     if (!previousOperandTextElementLS && localStorage.getItem("calculated") && currentLS) {
-      localStorage.setItem("calculated", false);
+      localStorage.setItem("calculated", "false");
     }
 
     previousOperandTextElementLS += currentLS;
