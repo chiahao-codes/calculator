@@ -27,7 +27,7 @@ body {
 
 .calculator_grid > button {
   cursor: pointer;
-  border: 1px solid white;
+  border: 2px solid rgb(248, 248, 248);
   color: whitesmoke;
   font-family: inherit;
   outline: none;
