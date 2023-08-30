@@ -49,11 +49,12 @@ class Calculator {
     //add input to current local storage;
     let currentLS = localStorage.getItem("current");
     currentLS += number.toString();
-
-    if (currentLS[0] === ".") {
+    /**
+     * if (currentLS[0] === ".") {
       let zero = "0";
       currentLS = `${zero}${currentLS}`
     }
+     */
 
     localStorage.setItem("current", currentLS); // resets/sets new current number;
     return;
@@ -245,7 +246,6 @@ let calculator = new Calculator(
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     
-    
     if (button.innerText === ".") {
       if (localStorage.getItem("calculated") === "true") {
         localStorage.setItem("current", "");
@@ -261,6 +261,7 @@ numberButtons.forEach((button) => {
     if (localStorage.getItem("calculated")) {
       if (localStorage.getItem("computation") === localStorage.getItem("current")) {
         localStorage.setItem("current", "");
+        localStorage.setItem("calculated", "false");
       }
     }
 
