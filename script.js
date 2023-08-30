@@ -185,6 +185,7 @@ class Calculator {
           localStorage.setItem("initialZero", "false");
           curr = curr.slice(1);
           this.previousOperandTextElement.innerText = "";
+          console.log("running...")
         }
 
         //remove consecutive initial zeros
