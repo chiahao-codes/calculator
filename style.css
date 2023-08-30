@@ -96,8 +96,8 @@ body {
 
 @media screen and (min-width: 451px) {
   .calculator_grid {
-    grid-template-columns: repeat(4, 90px);
-    grid-template-rows: repeat(6, 90px);
+    grid-template-columns: repeat(4, 85px);
+    grid-template-rows: repeat(6, 85px);
   }
   .output .previous_operand {
     font-size: 38px;
