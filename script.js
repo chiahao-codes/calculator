@@ -320,7 +320,7 @@ equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
   let prevOperandText = localStorage.getItem("prevOperandText");
 
-  if (prevOperandText === null || !currLS) {
+  if (!prevOperandText || !currLS) {
     console.log("running")
     return
   }
