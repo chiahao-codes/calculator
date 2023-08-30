@@ -313,9 +313,10 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
-  //let prevOperandText = localStorage.getItem("prevOperandText");
+  let prevOperandText = localStorage.getItem("prevOperandText");
 
-  if (!currLS) {
+  if (!currLS || !prevOperandText) {
+    console.log("running")
     return
   }
 
