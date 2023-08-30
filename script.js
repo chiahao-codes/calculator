@@ -44,11 +44,13 @@ class Calculator {
 
     if (!currentLocalStorage && prevOpText) {
       prevOpText = prevOpText.slice(0, -1);
+      if (prevOpText.length === 0) {
+        localStorage.setItem("initialZero", "true");
+        currentLocalStorage = "0";
+      }
       localStorage.setItem("prevOperandText", prevOpText);
     }
-
     localStorage.setItem("current", currentLocalStorage);
-
   }
 
   appendNumber(number) {
