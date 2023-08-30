@@ -78,7 +78,7 @@ body {
   }
 
   .output .previous_operand {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .output .current_operand {
@@ -86,7 +86,7 @@ body {
   }
 
   .calculator_grid > button {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
