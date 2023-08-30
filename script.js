@@ -235,13 +235,19 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.innerText === "." ) {
+    /**
+     * if (button.innerText === "." ) {
       if (localStorage.getItem("calculated") === "true") {
         localStorage.setItem("current", "");
       }
         
     }
+     */
 
+    if (localStorage.getItem("calculated") === "true") {
+      localStorage.setItem("current", "");
+    }
+    
     if (localStorage.getItem("prevOperandText")) {
       if (localStorage.getItem("current") === "0") {
         localStorage.setItem("current", "");
