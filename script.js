@@ -54,7 +54,7 @@ class Calculator {
       let zero = "0";
       currentLS = `${zero}${currentLS}`
     }
-    
+
     localStorage.setItem("current", currentLS); // resets/sets new current number;
     return;
   }
@@ -208,7 +208,10 @@ class Calculator {
         curr = "";
       }
     
-
+      if (curr[0] === ".") {
+        let zero = "0";
+        curr = `${zero}${curr}`;
+      }
   
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
