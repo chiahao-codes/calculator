@@ -6,6 +6,7 @@
 }
 
 body {
+  position: relative;
   display: none;
   padding: 50px 0px;
   margin: 0;
@@ -14,6 +15,7 @@ body {
 }
 
 .calculator_grid {
+  position: relative;
   margin: auto;
   display: grid;
   justify-content: center;
@@ -71,8 +73,8 @@ body {
   }
 
   .calculator_grid {
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(6, minmax(50px, auto));
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(6, minmax(80px, auto));
   }
 
   .output .previous_operand {
