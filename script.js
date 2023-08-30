@@ -253,16 +253,6 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    //if a calculation exists on display and a decimal point is entered,
-    //display is refreshed with just decimal point;
-
-    /**
-     * if (button.innerText === ".") {
-      if (localStorage.getItem("calculated") === "true") {
-        localStorage.setItem("current", "");
-      }
-    }
-     */
 
     //get rid of initial zero in local storage;
     if (localStorage.getItem("initialZero")) {
@@ -323,8 +313,9 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", () => {
   let currLS = localStorage.getItem("current");
+  //let prevOperandText = localStorage.getItem("prevOperandText");
 
-  if (currLS == "") {
+  if (!currLS) {
     return
   }
 
