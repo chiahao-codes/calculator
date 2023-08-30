@@ -98,6 +98,8 @@ body {
 
 @media screen and (min-width: 451px) {
   .calculator_grid {
+    top:10%;
+    bottom:10%;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(6, minmax(100px, auto));
   }
