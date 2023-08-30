@@ -49,12 +49,6 @@ class Calculator {
     //add input to current local storage;
     let currentLS = localStorage.getItem("current");
     currentLS += number.toString();
-    /**
-     * if (currentLS[0] === ".") {
-      let zero = "0";
-      currentLS = `${zero}${currentLS}`
-    }
-     */
 
     localStorage.setItem("current", currentLS); // resets/sets new current number;
     return;
@@ -169,52 +163,64 @@ class Calculator {
     let opsButton = localStorage.getItem("operationButtonPushed");
 
     if (localStorage.getItem("cleared")) {
-      this.currentOperandTextElement.innerText = localStorage.getItem("current");
+      this.currentOperandTextElement.innerText =
+        localStorage.getItem("current");
       this.previousOperandTextElement.innerText = "";
     }
 
     //update computation display if needed;
-    if (localStorage.getItem("prevOperandText")){
-        this.previousOperandTextElement.innerText = localStorage.getItem("prevOperandText");
+    if (localStorage.getItem("prevOperandText")) {
+      this.previousOperandTextElement.innerText =
+        localStorage.getItem("prevOperandText");
     }
 
-    
-      //remove initial zero;
-      if (curr.length > 1 && !localStorage.getItem("computation")) {
-        if (localStorage.getItem("initialZero") == "true" && curr[0] === "0") {
-          localStorage.setItem("initialZero", "false");
+    //remove initial zero;
+    /**
+     * if (curr.length > 1) {
+        if (!localStorage.getItem("initialZero") && curr[0] === "0") {
+          //localStorage.setItem("initialZero", "false");
           curr = curr.slice(1);
           this.previousOperandTextElement.innerText = "";
           console.log("running...")
         }
+     */
 
-        //remove consecutive initial zeros
-        if (curr[0] === "0" && curr[1] === "0") {
-          curr = "0";
-        }
-      }
-
-      //if more than one decimal, remove previous decimal from curr;
-      let decimalsArray = curr.match(regExp);
-      if (decimalsArray) {
-        if (decimalsArray.length > 1) {
-          curr = curr.slice(0, -1);
-        }
+    //remove initial zero;
+    if (curr.length > 1) {
+      if (localStorage.getItem("initialZero") && curr[0] === "0") {
+        localStorage.setItem("initialZero", "false");
+        curr = curr.slice(0, 0);
+        this.previousOperandTextElement.innerText = "";
+        console.log("running...");
       }
 
-      //Only if operation button was pushed...
-      if (opsButton === "true") {
-        //update previousOperandText display
-        this.previousOperandTextElement.innerText =
-          localStorage.getItem("prevOperandText");
-        curr = "";
+      //remove consecutive initial zeros
+      if (curr[0] === "0" && curr[1] === "0") {
+        curr = "0";
       }
-    
-      if (curr[0] === ".") {
-        let zero = "0";
-        curr = `${zero}${curr}`;
+    }
+
+    //if more than one decimal, remove previous decimal from curr;
+    let decimalsArray = curr.match(regExp);
+    if (decimalsArray) {
+      if (decimalsArray.length > 1) {
+        curr = curr.slice(0, -1);
       }
-  
+    }
+
+    //Only if operation button was pushed...
+    if (opsButton === "true") {
+      //update previousOperandText display
+      this.previousOperandTextElement.innerText =
+        localStorage.getItem("prevOperandText");
+      curr = "";
+    }
+
+    if (curr[0] === ".") {
+      let zero = "0";
+      curr = `${zero}${curr}`;
+    }
+
     localStorage.setItem("current", curr);
     this.currentOperandTextElement.innerText = localStorage.getItem("current");
 
@@ -246,7 +252,6 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-
     //if a calculation exists on display and a decimal point is entered,
     //display is refreshed with just decimal point;
     if (button.innerText === ".") {
@@ -255,24 +260,24 @@ numberButtons.forEach((button) => {
       }
     }
 
-    //get rid of initial zero when entering a number or decimal,
-    //while the previous operand text exists;
-    if (localStorage.getItem("prevOperandText")) {
+    //get rid of initial zero in local storage;
+    if (localStorage.getItem("initialZero")) {
       if (localStorage.getItem("current") === "0") {
         localStorage.setItem("current", "");
       }
     }
 
+    //get rid of initial zero when entering a number or decimal,
+    //while the previous operand text exists;
     /**
-     *  if (localStorage.getItem("calculated")) {
-      if (localStorage.getItem("computation") === localStorage.getItem("current")) {
+     * if (localStorage.getItem("prevOperandText")) {
+      if (localStorage.getItem("current") === "0") {
         localStorage.setItem("current", "");
-        localStorage.setItem("calculated", "false");
       }
     }
      */
 
-    localStorage.setItem("initialZero", "false");
+   // localStorage.setItem("initialZero", "false");
     localStorage.setItem("cleared", "false");
     localStorage.setItem("operationButtonPushed", "false");
     calculator.appendNumber(button.innerText);
