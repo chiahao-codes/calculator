@@ -30,9 +30,9 @@ class Calculator {
 
   delete() {
     let currentLocalStorage = localStorage.getItem("current");
-    let previousLocalStorage = localStorage.getItem("previous");
+    let prevOpText = localStorage.getItem("prevOperandText");
 
-    if (currentLocalStorage && !previousLocalStorage) {
+    if (currentLocalStorage) {
       if (currentLocalStorage.length === 1) {
         localStorage.setItem("initialZero", "true");
         localStorage.setItem("current", "0");
@@ -42,7 +42,13 @@ class Calculator {
       }
     }
 
+    if (!currentLocalStorage && prevOpText) {
+      prevOpText = prevOpText.slice(0, -1);
+      localStorage.setItem("prevOperandText", prevOpText);
+    }
+
     localStorage.setItem("current", currentLocalStorage);
+
   }
 
   appendNumber(number) {
@@ -175,22 +181,10 @@ class Calculator {
     }
 
     //remove initial zero;
-    /**
-     * if (curr.length > 1) {
-        if (!localStorage.getItem("initialZero") && curr[0] === "0") {
-          //localStorage.setItem("initialZero", "false");
-          curr = curr.slice(1);
-          this.previousOperandTextElement.innerText = "";
-          console.log("running...")
-        }
-     */
-
-    //remove initial zero;
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
         localStorage.setItem("initialZero", "false");
         curr = curr.slice(1);
-        //if(!localStorage.getItem("prevOperandText"))this.previousOperandTextElement.innerText = "";
         console.log("running...");
       }
 
@@ -252,6 +246,8 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
+
+
     //if a calculation exists on display and a decimal point is entered,
     //display is refreshed with just decimal point;
     if (button.innerText === ".") {
@@ -266,16 +262,6 @@ numberButtons.forEach((button) => {
         localStorage.setItem("current", "");
       }
     }
-
-    //get rid of initial zero when entering a number or decimal,
-    //while the previous operand text exists;
-    /**
-     * if (localStorage.getItem("prevOperandText")) {
-      if (localStorage.getItem("current") === "0") {
-        localStorage.setItem("current", "");
-      }
-    }
-     */
 
    // localStorage.setItem("initialZero", "false");
     localStorage.setItem("cleared", "false");
