@@ -236,22 +236,26 @@ let calculator = new Calculator(
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
     /**
-     * if (button.innerText === "." ) {
-      if (localStorage.getItem("calculated") === "true") {
-        localStorage.setItem("current", "");
-      }
-        
+     * if (localStorage.getItem("calculated") === "true") {
+      localStorage.setItem("current", "");
     }
      */
 
-    if (localStorage.getItem("calculated") === "true") {
-      localStorage.setItem("current", "");
+    if (button.innerText === ".") {
+      if (localStorage.getItem("calculated") === "true") {
+        localStorage.setItem("current", "");
+      }
     }
-    
+
     if (localStorage.getItem("prevOperandText")) {
       if (localStorage.getItem("current") === "0") {
         localStorage.setItem("current", "");
       }
+    }
+
+    if (!localStorage.getItem("prevOperandText") && localStorage.getItem("calculated") && localStorage.getItem("current")) {
+      localStorage.setItem("current", "");
+      localStorage.setItem("calculated", "false");
     }
 
     localStorage.setItem("initialZero", "false");
