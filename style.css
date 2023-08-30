@@ -82,7 +82,7 @@ body {
 
   .calculator_grid {
     grid-template-columns: repeat(4, 80px);
-    grid-template-rows: repeat(6, minmax(80px, auto));
+    grid-template-rows: repeat(6, 80px);
   }
 
   .output .previous_operand {
@@ -101,7 +101,7 @@ body {
 @media screen and (min-width: 451px) {
   .calculator_grid {
     grid-template-columns: repeat(4, 95px);
-    grid-template-rows: repeat(6, minmax(95px, auto));
+    grid-template-rows: repeat(6, 95px);
   }
   .output .previous_operand {
     font-size: 38px;
