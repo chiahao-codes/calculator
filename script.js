@@ -245,25 +245,31 @@ let calculator = new Calculator(
 
 numberButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    
+
+    //if a calculation exists on display and a decimal point is entered,
+    //display is refreshed with just decimal point;
     if (button.innerText === ".") {
       if (localStorage.getItem("calculated") === "true") {
         localStorage.setItem("current", "");
       }
     }
 
+    //get rid of initial zero when entering a number or decimal,
+    //while the previous operand text exists;
     if (localStorage.getItem("prevOperandText")) {
       if (localStorage.getItem("current") === "0") {
         localStorage.setItem("current", "");
       }
     }
 
-    if (localStorage.getItem("calculated")) {
+    /**
+     *  if (localStorage.getItem("calculated")) {
       if (localStorage.getItem("computation") === localStorage.getItem("current")) {
         localStorage.setItem("current", "");
         localStorage.setItem("calculated", "false");
       }
     }
+     */
 
     localStorage.setItem("initialZero", "false");
     localStorage.setItem("cleared", "false");
