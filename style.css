@@ -19,18 +19,21 @@ body {
   justify-content: center;
   align-content: center;
   height: 50%;
-  width: fit-content;
+  min-width: max-content;
+  max-width: max-content;
   box-shadow: rgba(19, 19, 19, 0.2) 0px 7px 29px 0px;
   font-family: inherit;
 }
 
 .calculator_grid > button {
   cursor: pointer;
-  border: 1.7px solid rgb(248, 248, 248);
+  border: 1.8px solid rgb(248, 248, 248);
   color: whitesmoke;
   font-family: inherit;
   outline: none;
   background-color: rgba(5, 5, 5, 0.98);
+  width:fit-content;
+  max-width: fit-content;
   overflow: hidden;
 }
 
