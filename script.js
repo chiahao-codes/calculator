@@ -186,10 +186,6 @@ class Calculator {
         localStorage.getItem("prevOperandText");
     }
 
-    //if DEL was pushed until the end of the display;
-    if (localStorage.getItem("initialZero") && !localStorage.getItem("prevOperandText")) {
-      curr = "0";
-    }
 
     //remove initial zero;
     if (curr.length > 1) {
