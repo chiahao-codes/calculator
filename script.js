@@ -271,7 +271,7 @@ numberButtons.forEach((button) => {
       }
     }
 
-    if (localStorage.getItem("current") === localStorage.getItem("computed")) {
+    if (localStorage.getItem("current") === localStorage.getItem("computation")) {
       localStorage.setItem("current", "");
     }
 
