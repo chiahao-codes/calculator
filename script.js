@@ -180,8 +180,8 @@ class Calculator {
 
     
       //remove initial zero;
-      if (curr.length > 1) {
-        if (localStorage.getItem("initialZero") && curr[0] === "0") {
+      if (curr.length > 1 && !localStorage.getItem("computation")) {
+        if (localStorage.getItem("initialZero") === "true" && curr[0] === "0") {
           localStorage.setItem("initialZero", "false");
           curr = curr.slice(1);
           this.previousOperandTextElement.innerText = "";
