@@ -189,7 +189,7 @@ class Calculator {
     if (curr.length > 1) {
       if (localStorage.getItem("initialZero") && curr[0] === "0") {
         localStorage.setItem("initialZero", "false");
-        curr = curr.slice(0, 0);
+        curr = curr.slice(1);
         //if(!localStorage.getItem("prevOperandText"))this.previousOperandTextElement.innerText = "";
         console.log("running...");
       }
