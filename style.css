@@ -16,7 +16,7 @@ body {
 
 .calculator_grid {
   position: relative;
-  margin: auto;
+  
   display: grid;
   justify-content: center;
   align-content: center;
@@ -67,9 +67,11 @@ body {
   color: whitesmoke;
 }
 
-@media screen and (min-width: 320px) and (max-width: 450.99px) {
+@media screen and (min-width: 320px) {
   body {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .calculator_grid {
@@ -91,9 +93,6 @@ body {
 }
 
 @media screen and (min-width: 451px) {
-  body {
-    display: block;
-  }
   .calculator_grid {
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: repeat(6, minmax(100px, auto));
