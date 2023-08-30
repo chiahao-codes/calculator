@@ -44,10 +44,12 @@ class Calculator {
 
     if (!currentLocalStorage && prevOpText) {
       prevOpText = prevOpText.slice(0, -1);
+      console.log(prevOpText.length);
       if (prevOpText.length == 0) {
         localStorage.setItem("initialZero", "true");
         localStorage.setItem("current", "0");
         currentLocalStorage = localStorage.getItem("current");
+        console.log(currentLocalStorage)
       }
       localStorage.setItem("prevOperandText", prevOpText);
     }
