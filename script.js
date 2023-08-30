@@ -181,7 +181,7 @@ class Calculator {
     
       //remove initial zero;
       if (curr.length > 1 && !localStorage.getItem("computation")) {
-        if (localStorage.getItem("initialZero") === "true" && curr[0] === "0") {
+        if (localStorage.getItem("initialZero") == "true" && curr[0] === "0") {
           localStorage.setItem("initialZero", "false");
           curr = curr.slice(1);
           this.previousOperandTextElement.innerText = "";
