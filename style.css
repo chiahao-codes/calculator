@@ -2,7 +2,6 @@
 /*All elements, before each and after each, will have these property values*/
 * {
   box-sizing: border-box; /*padding and border are factored into sizing of elements*/
-  font-family: 'Noto Sans JP', sans-serif;
   font-weight: normal;
 }
 
