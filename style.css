@@ -32,8 +32,6 @@ body {
   font-family: inherit;
   outline: none;
   background-color: rgba(5, 5, 5, 0.98);
-  width:fit-content;
-  max-width: fit-content;
   overflow: hidden;
 }
 
