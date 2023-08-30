@@ -59,7 +59,8 @@ body {
   padding: 1.5vmin;
   height:fit-content;
   word-break: break-all; /*breaks text at the point of overflow*/
-  overflow: hidden;
+  /*overflow: hidden;*/
+  
 }
 
 .output .previous_operand {
