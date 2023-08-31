@@ -104,10 +104,10 @@ body {
   }
 
   .output .current_operand {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .calculator_grid > button {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
