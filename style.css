@@ -77,8 +77,8 @@ body {
   }
 
   .calculator_grid {
-    grid-template-columns: repeat(4, 80px);
-    grid-template-rows: repeat(6, 80px);
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(6, 70px);
   }
 
   .output .previous_operand {
