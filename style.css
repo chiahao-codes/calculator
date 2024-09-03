@@ -1,11 +1,11 @@
-
 /*All elements, before each and after each, will have these property values*/
 * {
   box-sizing: border-box; /*padding and border are factored into sizing of elements*/
   font-weight: normal;
 }
 
-html, body{
+html,
+body {
   overflow: hidden;
   height: 100%;
   margin: 0;
@@ -16,7 +16,7 @@ body {
   display: none;
   padding: 50px 0px;
   background: #e3e0e0;
-  font-family:'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .calculator_grid {
@@ -27,7 +27,7 @@ body {
   min-width: fit-content;
   max-width: fit-content;
   box-shadow: rgba(19, 19, 19, 0.2) 0px 7px 29px 0px;
-  font-family: 'Noto Sans JP'  , sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .calculator_grid > button {
@@ -58,7 +58,7 @@ body {
   justify-content: space-around;
   padding: 1vmin;
   word-break: break-all; /*breaks text at the point of overflow*/
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .output .previous_operand {
@@ -100,11 +100,11 @@ body {
     grid-template-rows: repeat(6, 80px);
   }
   .output .previous_operand {
-    font-size: 30px;
+    font-size: 29px;
   }
 
   .output .current_operand {
-    font-size: 34px;
+    font-size: 31px;
   }
 
   .calculator_grid > button {
