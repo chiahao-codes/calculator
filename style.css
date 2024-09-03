@@ -100,11 +100,11 @@ body {
     grid-template-rows: repeat(6, 80px);
   }
   .output .previous_operand {
-    font-size: 27px;
+    font-size: 25px;
   }
 
   .output .current_operand {
-    font-size: 29px;
+    font-size: 27px;
   }
 
   .calculator_grid > button {
